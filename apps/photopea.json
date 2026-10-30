@@ -1,0 +1,23 @@
+{
+  "id": "photopea",
+  "name": "Photopea",
+  "url": "https://www.photopea.com/",
+  "description": "Leistungsfähiger, fortschrittlicher Bildeditor direkt im Webbrowser. Unterstützt PSD, AI, XD, RAW, Sketch und PDF mit Ebenen, Masken, Filtern und Pinselwerkzeugen.",
+  "category": "Grafik & Design",
+  "tags": [
+    "Offline",
+    "Bildbearbeitung",
+    "PSD",
+    "Vektor",
+    "Design"
+  ],
+  "iconUrl": "https://www.photopea.com/promo/icon512.png",
+  "screenshots": [
+    "https://www.photopea.com/promo/screen0.png",
+    "https://www.photopea.com/promo/screen1.png"
+  ],
+  "youtubeVideoId": "tP_g9_G-6f4",
+  "featured": true,
+  "author": "Ivan Kutskir",
+  "license": "Freemium / Web"
+}

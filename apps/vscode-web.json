@@ -1,0 +1,21 @@
+{
+  "id": "vscode-web",
+  "name": "Visual Studio Code for Web",
+  "url": "https://vscode.dev/",
+  "description": "Kostenlose, webbasierte Code-Editor-Erfahrung direkt im Browser. Verbinde dich mit GitHub Repositories oder lokalen Ordnern via File System Access API mit Syntax-Highlighting, Git-Integration und Extensions.",
+  "category": "Entwicklung & Tools",
+  "tags": [
+    "Entwicklung",
+    "Code-Editor",
+    "GitHub",
+    "File System API"
+  ],
+  "iconUrl": "https://vscode.dev/static/stable/favicon.ico",
+  "screenshots": [
+    "https://code.visualstudio.com/assets/blogs/2021/10/20/vscode-web.png"
+  ],
+  "youtubeVideoId": "pB29S3B6lZs",
+  "featured": true,
+  "author": "Microsoft",
+  "license": "MIT"
+}

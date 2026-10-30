@@ -1,0 +1,23 @@
+{
+  "id": "excalidraw",
+  "name": "Excalidraw",
+  "url": "https://excalidraw.com/",
+  "description": "Virtuelles Whiteboard mit unverwechselbarem Handgezeichnet-Look. Unterstützt Ende-zu-Ende-Verschlüsselung, Echtzeit-Kollaboration, Offline-Modus und Export als SVG oder PNG.",
+  "category": "Produktivität",
+  "tags": [
+    "Open Source",
+    "Offline",
+    "Whiteboard",
+    "Kollaboration",
+    "Diagramme"
+  ],
+  "iconUrl": "https://excalidraw.com/apple-touch-icon.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/excalidraw/excalidraw/master/public/og-image-2.png"
+  ],
+  "youtubeVideoId": "k_oM0kCsmq8",
+  "featured": true,
+  "githubUrl": "https://github.com/excalidraw/excalidraw",
+  "author": "Excalidraw Team",
+  "license": "MIT"
+}

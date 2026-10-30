@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "generatedAt": "2026-10-30T13:46:38.980Z",
+    "totalApps": 9,
+    "featuredCount": 5,
+    "categories": [
+      "Audio & Video",
+      "Dienstprogramme",
+      "Entwicklung & Tools",
+      "Grafik & Design",
+      "Produktivität",
+      "Spiele & Fun"
+    ]
+  },
+  "apps": [
+    {
+      "id": "audiomass",
+      "name": "AudioMass",
+      "url": "https://audiomass.co/",
+      "description": "Vollwertiger Audio-Editor und Recorder in Web Audio und WebAssembly. Unterstützt Mehrkanal-Wellenformen, Frequenzanalysen, Hall, Kompression, Equalizer und Audio-Export ohne Server.",
+      "category": "Audio & Video",
+      "tags": [
+        "Open Source",
+        "Offline",
+        "Audio",
+        "Sound-Editing",
+        "WebAudio"
+      ],
+      "iconUrl": "https://audiomass.co/images/audiomass-icon.png",
+      "screenshots": [
+        "https://raw.githubusercontent.com/pantomi/AudioMass/master/screenshot.png"
+      ],
+      "youtubeVideoId": "Y3s6Y6b60c4",
+      "featured": true,
+      "githubUrl": "https://github.com/pantomi/AudioMass",
+      "author": "Pantelis Kalogiros",
+      "license": "GPL-3.0",
+      "addedAt": "2026-10-30"
+    },
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw",
+      "url": "https://excalidraw.com/",
+      "description": "Virtuelles Whiteboard mit unverwechselbarem Handgezeichnet-Look. Unterstützt Ende-zu-Ende-Verschlüsselung, Echtzeit-Kollaboration, Offline-Modus und Export als SVG oder PNG.",
+      "category": "Produktivität",
+      "tags": [
+        "Open Source",
+        "Offline",
+        "Whiteboard",
+        "Kollaboration",
+        "Diagramme"
+      ],
+      "iconUrl": "https://excalidraw.com/apple-touch-icon.png",
+      "screenshots": [
+        "https://raw.githubusercontent.com/excalidraw/excalidraw/master/public/og-image-2.png"
+      ],
+      "youtubeVideoId": "k_oM0kCsmq8",
+      "featured": true,
+      "githubUrl": "https://github.com/excalidraw/excalidraw",
+      "author": "Excalidraw Team",
+      "license": "MIT",
+      "addedAt": "2026-10-30"
+    },
+    {
+      "id": "photopea",
+      "name": "Photopea",
+      "url": "https://www.photopea.com/",
+      "description": "Leistungsfähiger, fortschrittlicher Bildeditor direkt im Webbrowser. Unterstützt PSD, AI, XD, RAW, Sketch und PDF mit Ebenen, Masken, Filtern und Pinselwerkzeugen.",
+      "category": "Grafik & Design",
+      "tags": [
+        "Offline",
+        "Bildbearbeitung",
+        "PSD",
+        "Vektor",
+        "Design"
+      ],
+      "iconUrl": "https://www.photopea.com/promo/icon512.png",
+      "screenshots": [
+        "https://www.photopea.com/promo/screen0.png",
+        "https://www.photopea.com/promo/screen1.png"
+      ],
+      "youtubeVideoId": "tP_g9_G-6f4",
+      "featured": true,
+      "author": "Ivan Kutskir",
+      "license": "Freemium / Web",
+      "addedAt": "2026-10-30"
+    },
+    {
+      "id": "squoosh",
+      "name": "Squoosh",
+      "url": "https://squoosh.app/",
+      "description": "Bildkomprimierung und -optimierung der nächsten Generation von Google Chrome Labs. Nutzt WebAssembly für blitzschnelle Konvertierung in WebP, AVIF, MozJPEG und OxiPNG direkt im Browser ohne Uploads.",
+      "category": "Grafik & Design",
+      "tags": [
+        "Open Source",
+        "Offline",
+        "WebAssembly",
+        "Bildkomprimierung",
+        "AVIF"
+      ],
+      "iconUrl": "https://squoosh.app/c/icon-large-582cb5be.png",
+      "screenshots": [
+        "https://raw.githubusercontent.com/GoogleChromeLabs/squoosh/dev/src/client/screenshot.png"
+      ],
+      "youtubeVideoId": "14e_K86U0-U",
+      "featured": true,
+      "githubUrl": "https://github.com/GoogleChromeLabs/squoosh",
+      "author": "Google Chrome Labs",
+      "license": "Apache-2.0",
+      "addedAt": "2026-10-30"
+    },
+    {
+      "id": "vscode-web",
+      "name": "Visual Studio Code for Web",
+      "url": "https://vscode.dev/",
+      "description": "Kostenlose, webbasierte Code-Editor-Erfahrung direkt im Browser. Verbinde dich mit GitHub Repositories oder lokalen Ordnern via File System Access API mit Syntax-Highlighting, Git-Integration und Extensions.",
+      "category": "Entwicklung & Tools",
+      "tags": [
+        "Entwicklung",
+        "Code-Editor",
+        "GitHub",
+        "File System API"
+      ],
+      "iconUrl": "https://vscode.dev/static/stable/favicon.ico",
+      "screenshots": [
+        "https://code.visualstudio.com/assets/blogs/2021/10/20/vscode-web.png"
+      ],
+      "youtubeVideoId": "pB29S3B6lZs",
+      "featured": true,
+      "author": "Microsoft",
+      "license": "MIT",
+      "addedAt": "2026-10-30"
+    },
+    {
+      "id": "pwa-2048",
+      "name": "2048 PWA",
+      "url": "https://play2048.co/",
+      "description": "Das legendäre Zahlen-Kombinations-Puzzle von Gabriele Cirulli. Vollständig offline-fähig, butterweiche Wisch- und Tastatursteuerung, speichert den Highscore lokal ohne Cookies oder Werbung.",
+      "category": "Spiele & Fun",
+      "tags": [
+        "Open Source",
+        "Offline",
+        "Puzzle",
+        "Klassiker",
+        "Casual"
+      ],
+      "iconUrl": "https://play2048.co/favicon.ico",
+      "screenshots": [
+        "https://raw.githubusercontent.com/gabrielecirulli/2048/master/meta/og_image.png"
+      ],
+      "featured": false,
+      "githubUrl": "https://github.com/gabrielecirulli/2048",
+      "author": "Gabriele Cirulli",
+      "license": "MIT",
+      "addedAt": "2026-10-30"
+    },
+    {
+      "id": "cyberchef",
+      "name": "CyberChef",
+      "url": "https://gchq.github.io/CyberChef/",
+      "description": "Das Schweizer Taschenmesser für Cyber-Analysten und Entwickler von GCHQ. Verschlüsseln, Decodieren, Hashen, Parsen und Transformieren von Datenketten mit einer visuellen Rezept-Pipeline komplett offline im Browser.",
+      "category": "Dienstprogramme",
+      "tags": [
+        "Open Source",
+        "Offline",
+        "Kryptografie",
+        "Security",
+        "Encoding"
+      ],
+      "iconUrl": "https://gchq.github.io/CyberChef/images/cyberchef-128x128.png",
+      "screenshots": [
+        "https://raw.githubusercontent.com/gchq/CyberChef/master/src/core/assets/screenshot.png"
+      ],
+      "youtubeVideoId": "Yh1e56XF5vU",
+      "featured": false,
+      "githubUrl": "https://github.com/gchq/CyberChef",
+      "author": "GCHQ",
+      "license": "Apache-2.0",
+      "addedAt": "2026-10-30"
+    },
+    {
+      "id": "poddr",
+      "name": "Poddr Web",
+      "url": "https://poddr.rocks/",
+      "description": "Minimalistischer, eleganter Podcast-Client mit iTunes & Podcast Index Suche. Bietet Kapitelmarken, Offline-Cache, anpassbare Wiedergabegeschwindigkeit und Schlaf-Timer in modernem Dark Mode.",
+      "category": "Audio & Video",
+      "tags": [
+        "Open Source",
+        "Audio",
+        "Podcast",
+        "Streaming"
+      ],
+      "iconUrl": "https://poddr.rocks/assets/icon-192.png",
+      "screenshots": [
+        "https://raw.githubusercontent.com/Sn8z/Poddr/master/resources/screenshot.png"
+      ],
+      "featured": false,
+      "githubUrl": "https://github.com/Sn8z/Poddr",
+      "author": "Sn8z",
+      "license": "GPL-3.0",
+      "addedAt": "2026-10-30"
+    },
+    {
+      "id": "sand-spiel",
+      "name": "Sandspiel",
+      "url": "https://sandspiel.club/",
+      "description": "Faszinierendes zelluläres Physik-Sandkasten-Spiel in WebAssembly und Rust. Experimentiere mit Sand, Wasser, Feuer, Säure, Gas, Pflanzen und Eis mit flüssiger Echtzeit-Simulation.",
+      "category": "Spiele & Fun",
+      "tags": [
+        "Open Source",
+        "Offline",
+        "WebAssembly",
+        "Physik-Simulation",
+        "Rust"
+      ],
+      "iconUrl": "https://sandspiel.club/favicon.ico",
+      "screenshots": [
+        "https://raw.githubusercontent.com/MaxBittker/sandspiel/master/images/promo.png"
+      ],
+      "youtubeVideoId": "Yc0_1B2u3Q8",
+      "featured": false,
+      "githubUrl": "https://github.com/MaxBittker/sandspiel",
+      "author": "Max Bittker",
+      "license": "MIT",
+      "addedAt": "2026-10-30"
+    }
+  ]
+}

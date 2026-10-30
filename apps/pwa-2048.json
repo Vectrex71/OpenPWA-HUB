@@ -1,0 +1,22 @@
+{
+  "id": "pwa-2048",
+  "name": "2048 PWA",
+  "url": "https://play2048.co/",
+  "description": "Das legendäre Zahlen-Kombinations-Puzzle von Gabriele Cirulli. Vollständig offline-fähig, butterweiche Wisch- und Tastatursteuerung, speichert den Highscore lokal ohne Cookies oder Werbung.",
+  "category": "Spiele & Fun",
+  "tags": [
+    "Open Source",
+    "Offline",
+    "Puzzle",
+    "Klassiker",
+    "Casual"
+  ],
+  "iconUrl": "https://play2048.co/favicon.ico",
+  "screenshots": [
+    "https://raw.githubusercontent.com/gabrielecirulli/2048/master/meta/og_image.png"
+  ],
+  "featured": false,
+  "githubUrl": "https://github.com/gabrielecirulli/2048",
+  "author": "Gabriele Cirulli",
+  "license": "MIT"
+}

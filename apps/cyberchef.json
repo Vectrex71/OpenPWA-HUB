@@ -1,0 +1,23 @@
+{
+  "id": "cyberchef",
+  "name": "CyberChef",
+  "url": "https://gchq.github.io/CyberChef/",
+  "description": "Das Schweizer Taschenmesser für Cyber-Analysten und Entwickler von GCHQ. Verschlüsseln, Decodieren, Hashen, Parsen und Transformieren von Datenketten mit einer visuellen Rezept-Pipeline komplett offline im Browser.",
+  "category": "Dienstprogramme",
+  "tags": [
+    "Open Source",
+    "Offline",
+    "Kryptografie",
+    "Security",
+    "Encoding"
+  ],
+  "iconUrl": "https://gchq.github.io/CyberChef/images/cyberchef-128x128.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/gchq/CyberChef/master/src/core/assets/screenshot.png"
+  ],
+  "youtubeVideoId": "Yh1e56XF5vU",
+  "featured": false,
+  "githubUrl": "https://github.com/gchq/CyberChef",
+  "author": "GCHQ",
+  "license": "Apache-2.0"
+}
