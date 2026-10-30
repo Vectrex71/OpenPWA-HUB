@@ -3,7 +3,7 @@
  */
 
 const STORAGE_KEY_REPO = 'openpwa_github_repo';
-const DEFAULT_REPO = 'OpenPWA/directory';
+const DEFAULT_REPO = 'Vectrex71/OpenPWA-HUB';
 
 export function getGitHubRepo(): string {
   try {
