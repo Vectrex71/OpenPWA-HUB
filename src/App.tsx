@@ -57,14 +57,14 @@ export default function App() {
       if (Array.isArray(data.apps)) {
         setApps(data.apps);
       } else {
-        throw new Error('Ungültiges Datenbankformat: Array "apps" fehlt.');
+        throw new Error('Invalid database format: "apps" array missing.');
       }
     } catch (err: unknown) {
-      console.warn('Fehler beim Laden von database.json per fetch, nutze integriertes Fallback:', err);
+      console.warn('Failed to fetch database.json, using bundled fallback:', err);
       if (fallbackData && Array.isArray(fallbackData.apps)) {
         setApps(fallbackData.apps as PWAEntry[]);
       } else {
-        setError(err instanceof Error ? err.message : 'Unbekannter Ladefehler');
+        setError(err instanceof Error ? err.message : 'Unknown loading error');
       }
     } finally {
       setLoading(false);
@@ -132,12 +132,12 @@ export default function App() {
     if (sortBy === 'featured') {
       list.sort((a, b) => {
         if (a.featured === b.featured) {
-          return a.name.localeCompare(b.name, 'de', { sensitivity: 'base' });
+          return a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
         }
         return a.featured ? -1 : 1;
       });
     } else if (sortBy === 'name') {
-      list.sort((a, b) => a.name.localeCompare(b.name, 'de', { sensitivity: 'base' }));
+      list.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
     } else if (sortBy === 'newest') {
       list.sort((a, b) => (b.addedAt || '').localeCompare(a.addedAt || ''));
     }
@@ -177,7 +177,7 @@ export default function App() {
         onSearchChange={setSearchQuery}
       />
 
-      {/* Rotating Hero Spotlight Showcase with Screenshots (no huge text blocks) */}
+      {/* Rotating Hero Spotlight Showcase with Screenshots */}
       <Hero
         apps={apps}
         onOpenDetails={(selected) => setSelectedApp(selected)}
@@ -208,18 +208,25 @@ export default function App() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="h-44 rounded-2xl neu-flat p-5 animate-pulse"
+                className="rounded-2xl neu-flat p-4 animate-pulse flex flex-col justify-between"
               >
-                <div className="flex gap-4">
-                  <div className="h-14 w-14 rounded-xl neu-inset" />
-                  <div className="flex-1 space-y-2 py-1">
-                    <div className="h-4 w-3/4 rounded bg-slate-300/60" />
-                    <div className="h-3 w-1/2 rounded bg-slate-300/40" />
+                <div>
+                  <div className="aspect-[16/9] w-full rounded-xl neu-inset mb-3.5" />
+                  <div className="flex gap-3 items-center">
+                    <div className="h-12 w-12 rounded-xl neu-inset shrink-0" />
+                    <div className="flex-1 space-y-2 py-1">
+                      <div className="h-4 w-3/4 rounded bg-slate-300/60" />
+                      <div className="h-3 w-1/2 rounded bg-slate-300/40" />
+                    </div>
+                  </div>
+                  <div className="mt-3 space-y-2">
+                    <div className="h-3 w-full rounded bg-slate-300/40" />
+                    <div className="h-3 w-4/5 rounded bg-slate-300/40" />
                   </div>
                 </div>
-                <div className="mt-6 space-y-2.5">
-                  <div className="h-3 w-full rounded bg-slate-300/40" />
-                  <div className="h-3 w-4/5 rounded bg-slate-300/40" />
+                <div className="mt-4 pt-3 border-t border-slate-300/40 flex justify-between">
+                  <div className="h-3 w-20 rounded bg-slate-300/40" />
+                  <div className="h-3 w-14 rounded bg-slate-300/40" />
                 </div>
               </div>
             ))}
@@ -230,14 +237,14 @@ export default function App() {
         {error && apps.length === 0 && (
           <div className="mt-12 rounded-3xl neu-flat p-8 text-center text-rose-700 max-w-lg mx-auto">
             <AlertCircle className="h-8 w-8 mx-auto text-rose-600 mb-3" />
-            <h3 className="text-base font-bold text-rose-900">Ladefehler</h3>
+            <h3 className="text-base font-bold text-rose-900">Loading Error</h3>
             <p className="mt-1 text-xs text-rose-700">{error}</p>
             <button
               type="button"
               onClick={loadDatabase}
               className="mt-4 inline-flex items-center gap-2 rounded-xl neu-button px-4 py-2 text-xs font-bold text-rose-800 hover:text-rose-900 transition-colors"
             >
-              Erneut versuchen
+              Try Again
             </button>
           </div>
         )}
@@ -248,9 +255,9 @@ export default function App() {
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl neu-inset mx-auto text-slate-500 mb-4">
               <FilterX className="h-6 w-6" />
             </div>
-            <h3 className="text-base font-extrabold text-slate-900">Keine Web-Apps gefunden</h3>
+            <h3 className="text-base font-extrabold text-slate-900">No Web Apps Found</h3>
             <p className="mt-1.5 text-xs text-slate-600 leading-relaxed font-normal">
-              Für deine aktuellen Suchbegriffe und Filter wurden keine passenden Einträge gefunden.
+              No applications match your current search terms or filter selection.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <button
@@ -258,7 +265,7 @@ export default function App() {
                 onClick={handleResetFilters}
                 className="rounded-xl neu-button px-4 py-2 text-xs font-bold text-slate-700 hover:text-slate-900 transition-colors cursor-pointer"
               >
-                Filter zurücksetzen
+                Reset Filters
               </button>
               <button
                 type="button"
@@ -266,7 +273,7 @@ export default function App() {
                 className="flex items-center gap-1.5 rounded-xl neu-button-primary px-4 py-2 text-xs font-bold transition-colors cursor-pointer"
               >
                 <Plus className="h-3.5 w-3.5 stroke-[2.5]" />
-                <span>PWA vorschlagen</span>
+                <span>+ Submit PWA</span>
               </button>
             </div>
           </div>

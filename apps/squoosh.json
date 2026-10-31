@@ -2,20 +2,23 @@
   "id": "squoosh",
   "name": "Squoosh",
   "url": "https://squoosh.app/",
-  "description": "Bildkomprimierung und -optimierung der nächsten Generation von Google Chrome Labs. Nutzt WebAssembly für blitzschnelle Konvertierung in WebP, AVIF, MozJPEG und OxiPNG direkt im Browser ohne Uploads.",
-  "category": "Grafik & Design",
+  "description": "Next-generation image compression and optimization web app created by Google Chrome Labs. Employs WebAssembly for client-side conversions to WebP, AVIF, MozJPEG, and OxiPNG without server uploads.",
+  "category": "Graphics & Design",
   "tags": [
     "Open Source",
     "Offline",
     "WebAssembly",
-    "Bildkomprimierung",
+    "Image Compression",
     "AVIF"
   ],
-  "iconUrl": "https://squoosh.app/c/icon-large-582cb5be.png",
+  "iconUrl": "assets/squoosh-icon.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/GoogleChromeLabs/squoosh/dev/src/client/screenshot.png"
+    "assets/squoosh-demo.jpg",
+    "assets/squoosh-artwork.jpg",
+    "assets/squoosh-device.png"
   ],
-  "youtubeVideoId": "14e_K86U0-U",
+  "youtubeVideoId": "ipNW6lJHVEs",
+  "youtubeUrl": "https://www.youtube.com/watch?v=ipNW6lJHVEs",
   "featured": true,
   "githubUrl": "https://github.com/GoogleChromeLabs/squoosh",
   "author": "Google Chrome Labs",

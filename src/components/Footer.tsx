@@ -24,8 +24,8 @@ export const Footer: React.FC<FooterProps> = ({
               OpenPWA <span className="text-sky-600 font-black">Hub</span>
             </div>
             <p className="text-slate-600 text-xs font-normal">
-              Ein rein statischer, quelloffener Katalog für Progressive Web Apps im weichen Neumorphism-Design.
-              Entwickelt für GitHub Pages ohne Tracking, Cookies oder externe Datenbanken.
+              A 100% static, open-source directory for high-quality Progressive Web Apps crafted with soft neumorphism.
+              Engineered for GitHub Pages with zero tracking, cookies, or backend servers.
             </p>
           </div>
 
@@ -35,14 +35,14 @@ export const Footer: React.FC<FooterProps> = ({
               onClick={onOpenSubmit}
               className="neu-button px-3 py-1.5 rounded-xl hover:text-sky-700 transition-colors cursor-pointer"
             >
-              PWA vorschlagen
+              + Submit PWA
             </button>
             <button
               type="button"
               onClick={onOpenDocs}
               className="neu-button px-3 py-1.5 rounded-xl hover:text-sky-700 transition-colors cursor-pointer"
             >
-              Architektur
+              Architecture
             </button>
             <button
               type="button"
@@ -75,7 +75,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Bottom line: Copyright & Synthek Design Link */}
         <div className="mt-8 pt-6 border-t border-slate-300/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 font-medium">
           <div>
-            © {new Date().getFullYear()} OpenPWA Hub · MIT Lizenz · Soft Neumorphic Edition.
+            © {new Date().getFullYear()} OpenPWA Hub · MIT License · Soft Neumorphic Edition.
           </div>
           <div>
             <a
@@ -83,7 +83,7 @@ export const Footer: React.FC<FooterProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               className="neu-button px-3.5 py-1.5 rounded-xl inline-flex items-center gap-2 transition-all hover:scale-[1.02] active:scale-95 cursor-pointer"
-              title="hj-wuethrich.cv besuchen"
+              title="Visit hj-wuethrich.cv"
             >
               <span className="text-[11px] font-semibold text-slate-500">Design by</span>
               <img

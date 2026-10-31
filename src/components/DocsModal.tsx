@@ -24,7 +24,7 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
           <div className="flex items-center gap-2.5">
             <BookOpen className="h-5 w-5 text-sky-600" />
             <h2 id="docs-modal-title" className="text-base font-extrabold text-slate-900">
-              Architektur &amp; Workflow Dokumentation
+              Architecture &amp; Workflow Documentation
             </h2>
           </div>
           <button
@@ -42,14 +42,14 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
           <div className="rounded-2xl neu-flat-sm p-4 space-y-2">
             <div className="flex items-center gap-2 font-bold text-slate-900 text-sm">
               <Layers className="h-4 w-4 text-sky-600" />
-              <span>1. Das statische Datenkonzept (Serverless &amp; Kostenlos)</span>
+              <span>1. Static Architecture (100% Serverless &amp; Free)</span>
             </div>
             <p>
-              Dieses PWA-Verzeichnis benötigt <strong>weder Server noch Datenbank</strong>.
-              Alle App-Einträge liegen als eigenständige JSON-Dateien im Ordner <code className="text-sky-700 font-mono font-bold">/apps/&lt;app-id&gt;.json</code>.
+              This PWA directory requires <strong>neither a backend server nor a database</strong>.
+              All app entries are maintained as individual JSON files in the <code className="text-sky-700 font-mono font-bold">/apps/&lt;app-id&gt;.json</code> directory.
             </p>
             <p>
-              Beim Build führt das Skript <code className="text-sky-700 font-mono font-bold">scripts/build-db.js</code> alle Apps zusammen, validiert deren Pflichtfelder und erzeugt die kompakte, optimierte <code className="text-sky-700 font-mono font-bold">public/database.json</code>.
+              During build time, <code className="text-sky-700 font-mono font-bold">scripts/build-db.js</code> validates required fields, bundles all apps, and generates the optimized static file <code className="text-sky-700 font-mono font-bold">public/database.json</code>.
             </p>
           </div>
 
@@ -57,14 +57,14 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
           <div className="rounded-2xl neu-flat-sm p-4 space-y-2">
             <div className="flex items-center gap-2 font-bold text-slate-900 text-sm">
               <Terminal className="h-4 w-4 text-sky-600" />
-              <span>2. Lokale Entwicklung &amp; Skripte</span>
+              <span>2. Local Development &amp; Scripts</span>
             </div>
             <div className="space-y-1.5 font-mono text-[11px] neu-inset-deep p-3.5 rounded-xl text-slate-800">
-              <div><span className="text-slate-500"># Datenbank aus /apps/*.json generieren:</span></div>
+              <div><span className="text-slate-500"># Compile database from /apps/*.json:</span></div>
               <div className="text-sky-700 font-bold">npm run build:db</div>
-              <div className="pt-2"><span className="text-slate-500"># Lokalen Entwicklungsserver starten:</span></div>
+              <div className="pt-2"><span className="text-slate-500"># Start local Vite development server:</span></div>
               <div className="text-sky-700 font-bold">npm run dev</div>
-              <div className="pt-2"><span className="text-slate-500"># Vollständigen Produktions-Build für GitHub Pages:</span></div>
+              <div className="pt-2"><span className="text-slate-500"># Production build for GitHub Pages:</span></div>
               <div className="text-sky-700 font-bold">npm run build</div>
             </div>
           </div>
@@ -76,12 +76,12 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
               <span>3. GitHub Actions CI/CD Pipeline</span>
             </div>
             <p>
-              Die Datei <code className="text-sky-700 font-mono font-bold">.github/workflows/deploy.yml</code> sorgt für vollautomatische Bereitstellung:
+              The workflow at <code className="text-sky-700 font-mono font-bold">.github/workflows/deploy.yml</code> handles automatic deployments:
             </p>
             <ul className="list-disc list-inside space-y-1 pl-1 text-slate-600">
-              <li>Triggert bei jedem Push auf den <code className="text-slate-800 font-mono font-semibold">main</code>-Branch.</li>
-              <li>Führt <code className="text-slate-800 font-mono font-semibold">npm run build</code> aus.</li>
-              <li>Lädt das kompilierte Verzeichnis <code className="text-slate-800 font-mono font-semibold">dist/</code> auf <strong>GitHub Pages</strong> hoch.</li>
+              <li>Triggers on push to the <code className="text-slate-800 font-mono font-semibold">main</code> branch or via manual dispatch.</li>
+              <li>Executes <code className="text-slate-800 font-mono font-semibold">npm run build</code>.</li>
+              <li>Deploys the static bundle <code className="text-slate-800 font-mono font-semibold">dist/</code> to <strong>GitHub Pages</strong>.</li>
             </ul>
           </div>
 
@@ -89,11 +89,11 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
           <div className="rounded-2xl neu-flat-sm p-4 space-y-2">
             <div className="flex items-center gap-2 font-bold text-slate-900 text-sm">
               <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-              <span>4. Neue PWA einreichen &amp; prüfen</span>
+              <span>4. Submitting &amp; Approving New PWAs</span>
             </div>
             <p>
-              Besucher nutzen das Formular <em>„PWA vorschlagen“</em>.
-              Beim Klick auf <em>„Auf GitHub einreichen“</em> wird ein neues GitHub Issue geöffnet, in dem die JSON-Datei bereits fertig formatiert eingefügt ist.
+              Visitors use the <em>“+ Submit PWA”</em> modal.
+              Clicking <em>“Submit via GitHub Issue”</em> opens a pre-formatted GitHub Issue containing the validated JSON. Maintainers can simply copy it into <code className="text-sky-700 font-mono font-bold">apps/&lt;app-id&gt;.json</code> to merge!
             </p>
           </div>
         </div>
@@ -105,7 +105,7 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
             onClick={onClose}
             className="rounded-xl neu-button-primary px-4 py-2 text-xs font-bold cursor-pointer"
           >
-            Verstanden
+            Got it
           </button>
         </div>
       </div>

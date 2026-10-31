@@ -1,0 +1,25 @@
+{
+  "id": "syntracker",
+  "name": "Syntracker",
+  "url": "https://syntracker.syn-labs.app",
+  "description": "Authentic retro chiptune and multi-track tracker running directly in your browser. Experience direct sequencing, pattern editing, synthesizer sound design, and vintage disc libraries.",
+  "category": "Audio & Video",
+  "tags": [
+    "Offline",
+    "WebAssembly",
+    "Audio",
+    "Open Source",
+    "Music",
+    "Retro"
+  ],
+  "iconUrl": "assets/syntracker-icon.png",
+  "screenshots": [
+    "assets/syntracker-hero.png",
+    "assets/syntracker-visualizer.png",
+    "assets/syntracker-disks.png"
+  ],
+  "featured": true,
+  "author": "HJ.Wuethrich",
+  "license": "MIT",
+  "githubUrl": "https://github.com/Vectrex71/Syn-Tracker"
+}

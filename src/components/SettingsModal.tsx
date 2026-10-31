@@ -19,7 +19,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
     if (clean.startsWith('https://github.com/')) {
       clean = clean.replace('https://github.com/', '');
     }
-    setGitHubRepo(clean || 'OpenPWA/directory');
+    setGitHubRepo(clean || 'Vectrex71/OpenPWA-HUB');
     setSaved(true);
     setTimeout(() => {
       setSaved(false);
@@ -41,7 +41,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
           <div className="flex items-center gap-2.5">
             <Github className="h-5 w-5 text-sky-600" />
             <h2 id="settings-modal-title" className="text-base font-extrabold text-slate-900">
-              GitHub Repository konfigurieren
+              Configure GitHub Repository
             </h2>
           </div>
           <button
@@ -55,26 +55,26 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
 
         <div className="space-y-3.5 text-xs text-slate-600">
           <p className="font-normal leading-relaxed">
-            Gib das GitHub-Repository an, an welches neue PWA-Einreichungen via Issues gesendet und für welches Kommentare vorbereitet werden sollen.
+            Specify the GitHub repository where new PWA submissions are sent as Issues and where community discussions are linked.
           </p>
 
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-1.5">
-              Repository (Format: <code className="text-sky-700">Benutzername/Repository</code>)
+              Repository (Format: <code className="text-sky-700">username/repository</code>)
             </label>
             <input
               type="text"
               value={repoInput}
               onChange={(e) => setRepoInput(e.target.value)}
-              placeholder="z. B. deingit/pwa-store"
+              placeholder="e.g. Vectrex71/OpenPWA-HUB"
               className="w-full rounded-xl neu-inset px-4 py-2.5 text-sm font-mono text-slate-800 placeholder:text-slate-400 focus:outline-none"
             />
           </div>
 
           <div className="rounded-2xl neu-inset p-3.5 text-[11px] text-slate-600 space-y-1.5">
-            <div className="font-bold text-slate-800">Auswirkung:</div>
-            <div>• „Auf GitHub einreichen“-Button öffnet: <span className="font-mono text-sky-700 font-semibold break-all">github.com/{repoInput || 'user/repo'}/issues/new</span></div>
-            <div>• GitHub-Link in der Navigation verweist auf dein Repository.</div>
+            <div className="font-bold text-slate-800">Impact:</div>
+            <div>• “Submit via GitHub Issue” will open: <span className="font-mono text-sky-700 font-semibold break-all">github.com/{repoInput || 'user/repo'}/issues/new</span></div>
+            <div>• GitHub link in footer and discussions point to your repository.</div>
           </div>
         </div>
 
@@ -84,7 +84,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
             onClick={onClose}
             className="rounded-xl neu-button px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
           >
-            Abbrechen
+            Cancel
           </button>
           <button
             type="button"
@@ -92,7 +92,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
             className="flex items-center gap-1.5 rounded-xl neu-button-primary px-4 py-2 text-xs font-bold cursor-pointer"
           >
             {saved ? <Check className="h-4 w-4" /> : null}
-            <span>{saved ? 'Gespeichert!' : 'Speichern'}</span>
+            <span>{saved ? 'Saved!' : 'Save'}</span>
           </button>
         </div>
       </div>

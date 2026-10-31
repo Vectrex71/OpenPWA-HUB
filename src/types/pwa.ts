@@ -8,6 +8,7 @@ export interface PWAEntry {
   iconUrl: string;
   screenshots: string[];
   youtubeVideoId?: string;
+  youtubeUrl?: string;
   featured: boolean;
   githubUrl?: string;
   author?: string;
@@ -17,13 +18,13 @@ export interface PWAEntry {
 
 export type CategoryKey =
   | 'all'
-  | 'Produktivität'
-  | 'Grafik & Design'
+  | 'Productivity'
+  | 'Graphics & Design'
   | 'Audio & Video'
-  | 'Entwicklung & Tools'
-  | 'Spiele & Fun'
-  | 'Dienstprogramme'
-  | 'Bildung & Wissenschaft';
+  | 'Developer Tools'
+  | 'Games & Fun'
+  | 'Utilities'
+  | 'Education & Science';
 
 export interface CategoryItem {
   id: CategoryKey;

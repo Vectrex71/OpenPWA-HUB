@@ -1,6 +1,6 @@
 {
   "name": "OpenPWA Hub",
-  "description": "Ein modernes, rein statisches und offenes Verzeichnis für Progressive Web Apps (PWAs) mit GitHub-Pages-Hosting und Issue-Submission.",
+  "description": "A modern, static, open-source directory for Progressive Web Apps (PWAs) hosted on GitHub Pages with issue-based submissions.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

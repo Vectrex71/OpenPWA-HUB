@@ -101,3 +101,43 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+/* Butter-smooth Hardware-Accelerated Ken Burns Showcase Animations */
+@keyframes kenburns-smooth-1 {
+  0% {
+    transform: scale3d(1, 1, 1) translate3d(0%, 0%, 0);
+  }
+  50% {
+    transform: scale3d(1.07, 1.07, 1) translate3d(-1.5%, -1%, 0);
+  }
+  100% {
+    transform: scale3d(1.12, 1.12, 1) translate3d(-2.5%, -1.8%, 0);
+  }
+}
+
+@keyframes kenburns-smooth-2 {
+  0% {
+    transform: scale3d(1.12, 1.12, 1) translate3d(2%, 1%, 0);
+  }
+  50% {
+    transform: scale3d(1.06, 1.06, 1) translate3d(0.5%, 0.5%, 0);
+  }
+  100% {
+    transform: scale3d(1.02, 1.02, 1) translate3d(-1%, -0.5%, 0);
+  }
+}
+
+.kenburns-smooth-1 {
+  animation: kenburns-smooth-1 22s ease-in-out infinite alternate;
+  will-change: transform;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.kenburns-smooth-2 {
+  animation: kenburns-smooth-2 22s ease-in-out infinite alternate;
+  will-change: transform;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   X,
   ExternalLink,
@@ -7,7 +7,6 @@ import {
   Sparkles,
   Check,
   Play,
-  Image as ImageIcon,
   MessageSquare,
   Smartphone,
   Monitor,
@@ -17,7 +16,15 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { PWAEntry } from '../types/pwa';
-import { getGitHubRepo } from '../utils/config';
+import { getGitHubRepo, resolveAssetUrl, extractYouTubeId } from '../utils/config';
+
+interface MediaItem {
+  id: string;
+  type: 'video' | 'screenshot';
+  thumbnailUrl: string;
+  screenshotIndex?: number;
+  label: string;
+}
 
 interface AppDetailModalProps {
   app: PWAEntry | null;
@@ -30,21 +37,59 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
   onClose,
   onSelectTag,
 }) => {
-  const [selectedScreenshotIndex, setSelectedScreenshotIndex] = useState(0);
+  const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
   const [copiedLink, setCopiedLink] = useState(false);
   const [showInstallGuide, setShowInstallGuide] = useState(false);
-  const [activeMediaTab, setActiveMediaTab] = useState<'screenshots' | 'video'>('screenshots');
   const [iconError, setIconError] = useState(false);
 
-  useEffect(() => {
-    setSelectedScreenshotIndex(0);
-    setIconError(false);
-    if (app?.youtubeVideoId) {
-      setActiveMediaTab('video');
-    } else {
-      setActiveMediaTab('screenshots');
+  const videoId = app ? extractYouTubeId(app.youtubeVideoId || app.youtubeUrl) : undefined;
+  const hasVideo = Boolean(videoId);
+
+  // Steam-style unified media strip: Video at index 0 (if available), followed by Screenshots 1..N
+  const mediaList: MediaItem[] = useMemo(() => {
+    if (!app) return [];
+    const list: MediaItem[] = [];
+
+    // Item 0: Video
+    if (videoId) {
+      list.push({
+        id: `video-${videoId}`,
+        type: 'video',
+        thumbnailUrl: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+        label: 'Video Preview',
+      });
     }
-  }, [app]);
+
+    // Subsequent items: Screenshots
+    if (app.screenshots && app.screenshots.length > 0) {
+      app.screenshots.forEach((src, idx) => {
+        list.push({
+          id: `screenshot-${idx}`,
+          type: 'screenshot',
+          thumbnailUrl: resolveAssetUrl(src),
+          screenshotIndex: idx,
+          label: `Screenshot ${idx + 1}`,
+        });
+      });
+    }
+
+    return list;
+  }, [app, videoId]);
+
+  useEffect(() => {
+    if (!app) return;
+    // Initial active media:
+    // If video exists, start on video (index 0)
+    // If no video, follow rule: if >1 screenshots, Screenshot 2 = Info (index 1)
+    if (videoId) {
+      setSelectedMediaIndex(0);
+    } else if (app.screenshots && app.screenshots.length > 1) {
+      setSelectedMediaIndex(1);
+    } else {
+      setSelectedMediaIndex(0);
+    }
+    setIconError(false);
+  }, [app, videoId]);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -62,7 +107,6 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
 
   const repo = getGitHubRepo();
   const hasScreenshots = app.screenshots && app.screenshots.length > 0;
-  const hasVideo = Boolean(app.youtubeVideoId);
   const isOffline = app.tags.some((t) => t.toLowerCase().includes('offline'));
 
   const handleCopyLink = () => {
@@ -86,7 +130,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
         {/* Modal Header */}
         <div className="flex items-center justify-between border-b border-slate-300/40 px-6 py-4 bg-[#e6ecf4]">
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-            <span>PWA Detailansicht</span>
+            <span>PWA Details</span>
             <span aria-hidden="true" className="text-slate-400">·</span>
             <span className="text-sky-700">{app.category}</span>
           </div>
@@ -95,7 +139,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
             type="button"
             onClick={onClose}
             className="flex h-8 w-8 items-center justify-center rounded-xl neu-button text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
-            title="Schließen"
+            title="Close"
           >
             <X className="h-4 w-4" />
           </button>
@@ -109,7 +153,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
               <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl neu-flat-sm p-2">
                 {!iconError ? (
                   <img
-                    src={app.iconUrl}
+                    src={resolveAssetUrl(app.iconUrl)}
                     alt={app.name}
                     className="h-full w-full object-contain rounded-xl"
                     referrerPolicy="no-referrer"
@@ -130,20 +174,20 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
                   {app.featured && (
                     <span className="inline-flex items-center gap-1 rounded-lg neu-flat-sm px-2.5 py-0.5 text-xs font-bold text-amber-700">
                       <Sparkles className="h-3 w-3 fill-amber-400 text-amber-500" />
-                      <span>Empfohlen</span>
+                      <span>Featured</span>
                     </span>
                   )}
                 </div>
 
                 <div className="mt-1 flex flex-wrap items-center gap-2 text-xs font-medium text-slate-600">
-                  {app.author && <span>Entwickelt von {app.author}</span>}
+                  {app.author && <span>Created by {app.author}</span>}
                   {app.author && <span aria-hidden="true" className="text-slate-400">·</span>}
-                  {app.license && <span>Lizenz: {app.license}</span>}
+                  {app.license && <span>License: {app.license}</span>}
                   {isOffline && (
                     <>
                       <span aria-hidden="true" className="text-slate-400">·</span>
                       <span className="inline-flex items-center gap-1 text-emerald-700 font-semibold">
-                        <Wifi className="h-3 w-3 stroke-[2.5]" /> Offline nutzbar
+                        <Wifi className="h-3 w-3 stroke-[2.5]" /> Offline Ready
                       </span>
                     </>
                   )}
@@ -159,7 +203,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
                 rel="noopener noreferrer"
                 className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl neu-button-primary px-5 py-3 text-sm font-bold active:scale-95 transition-all"
               >
-                <span>App im Browser öffnen</span>
+                <span>Launch in Browser</span>
                 <ExternalLink className="h-4 w-4" />
               </a>
 
@@ -167,7 +211,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
                 type="button"
                 onClick={handleCopyLink}
                 className="flex h-11 w-11 items-center justify-center rounded-xl neu-button text-slate-700 hover:text-slate-900 transition-colors cursor-pointer"
-                title="PWA-Link kopieren"
+                title="Copy PWA Link"
               >
                 {copiedLink ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
               </button>
@@ -178,7 +222,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-11 w-11 items-center justify-center rounded-xl neu-button text-slate-700 hover:text-slate-900 transition-colors"
-                  title="Source Code auf GitHub ansehen"
+                  title="View Source on GitHub"
                 >
                   <Github className="h-4 w-4" />
                 </a>
@@ -186,125 +230,125 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
             </div>
           </div>
 
-          {/* Media Showcase: Screenshots / Video */}
-          {(hasScreenshots || hasVideo) && (
+          {/* Steam-Style Unified Media Showcase: Video at item 0, Screenshots following, all in one row below */}
+          {mediaList.length > 0 && (
             <div className="space-y-3">
-              {/* Media Switcher Tabs if both present */}
-              {hasScreenshots && hasVideo && (
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setActiveMediaTab('video')}
-                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      activeMediaTab === 'video'
-                        ? 'neu-inset text-sky-700'
-                        : 'neu-button text-slate-600 hover:text-slate-900'
-                    }`}
-                  >
-                    <Play className="h-3.5 w-3.5" /> Video-Vorschau
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveMediaTab('screenshots')}
-                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      activeMediaTab === 'screenshots'
-                        ? 'neu-inset text-sky-700'
-                        : 'neu-button text-slate-600 hover:text-slate-900'
-                    }`}
-                  >
-                    <ImageIcon className="h-3.5 w-3.5" /> Screenshots ({app.screenshots.length})
-                  </button>
-                </div>
-              )}
+              {/* Main Media Viewport */}
+              {(() => {
+                const activeItem = mediaList[selectedMediaIndex] || mediaList[0];
+                const prevMedia = () => {
+                  if (mediaList.length <= 1) return;
+                  setSelectedMediaIndex((prev) => (prev === 0 ? mediaList.length - 1 : prev - 1));
+                };
+                const nextMedia = () => {
+                  if (mediaList.length <= 1) return;
+                  setSelectedMediaIndex((prev) => (prev === mediaList.length - 1 ? 0 : prev + 1));
+                };
 
-              {/* Video Player */}
-              {activeMediaTab === 'video' && hasVideo && (
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl neu-inset-deep">
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${app.youtubeVideoId}?rel=0`}
-                    title={`${app.name} Video`}
-                    className="absolute inset-0 h-full w-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              )}
+                return (
+                  <>
+                    <div className="relative aspect-video w-full overflow-hidden rounded-2xl neu-inset-deep bg-slate-950/25 flex items-center justify-center">
+                      {activeItem.type === 'video' && videoId ? (
+                        <iframe
+                          key={`video-frame-${videoId}`}
+                          src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
+                          title={`${app.name} Video Preview`}
+                          className="absolute inset-0 h-full w-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      ) : activeItem.type === 'screenshot' && app.screenshots ? (
+                        <img
+                          key={`screenshot-view-${activeItem.screenshotIndex}`}
+                          src={resolveAssetUrl(app.screenshots[activeItem.screenshotIndex ?? 0])}
+                          alt={`${app.name} ${activeItem.label}`}
+                          className="max-h-full max-w-full object-contain rounded-lg shadow-sm"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : null}
 
-              {/* Screenshot Showcase */}
-              {activeMediaTab === 'screenshots' && hasScreenshots && (
-                <div className="space-y-3">
-                  <div className="relative aspect-video w-full overflow-hidden rounded-2xl neu-inset-deep flex items-center justify-center p-2">
-                    <img
-                      src={app.screenshots[selectedScreenshotIndex]}
-                      alt={`${app.name} Screenshot`}
-                      className="max-h-full max-w-full object-contain rounded-lg shadow-sm"
-                      referrerPolicy="no-referrer"
-                    />
+                      {/* Previous / Next Overlay Controls */}
+                      {mediaList.length > 1 && (
+                        <div className="absolute inset-x-3 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-10">
+                          <button
+                            type="button"
+                            onClick={prevMedia}
+                            className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full bg-white/85 hover:bg-white text-slate-800 shadow-md backdrop-blur-md transition-all active:scale-90 cursor-pointer"
+                            title="Previous Media"
+                          >
+                            <ChevronLeft className="h-5 w-5 stroke-[2.5]" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={nextMedia}
+                            className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full bg-white/85 hover:bg-white text-slate-800 shadow-md backdrop-blur-md transition-all active:scale-90 cursor-pointer"
+                            title="Next Media"
+                          >
+                            <ChevronRight className="h-5 w-5 stroke-[2.5]" />
+                          </button>
+                        </div>
+                      )}
+                    </div>
 
-                    {/* Left/Right controls if multiple screenshots */}
-                    {app.screenshots.length > 1 && (
-                      <div className="absolute inset-x-3 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setSelectedScreenshotIndex((prev) =>
-                              prev === 0 ? app.screenshots.length - 1 : prev - 1
-                            )
-                          }
-                          className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full neu-button text-slate-700 hover:text-slate-900 transition-transform active:scale-90"
-                          title="Vorheriger Screenshot"
-                        >
-                          <ChevronLeft className="h-5 w-5" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setSelectedScreenshotIndex((prev) =>
-                              prev === app.screenshots.length - 1 ? 0 : prev + 1
-                            )
-                          }
-                          className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full neu-button text-slate-700 hover:text-slate-900 transition-transform active:scale-90"
-                          title="Nächster Screenshot"
-                        >
-                          <ChevronRight className="h-5 w-5" />
-                        </button>
+                    {/* Unified Thumbnail Strip DIRECTLY UNDER the Viewport (Steam Style) */}
+                    {mediaList.length > 1 && (
+                      <div className="flex items-center gap-2.5 overflow-x-auto pb-1.5 pt-1 px-1 scrollbar-none">
+                        {mediaList.map((item, idx) => {
+                          const isSelected = selectedMediaIndex === idx;
+                          return (
+                            <button
+                              key={item.id}
+                              type="button"
+                              onClick={() => setSelectedMediaIndex(idx)}
+                              className={`group relative h-16 w-28 shrink-0 overflow-hidden rounded-xl transition-all cursor-pointer ${
+                                isSelected
+                                  ? 'ring-2 ring-sky-500 shadow-md neu-inset p-0.5 scale-[1.02] z-10'
+                                  : 'neu-button opacity-75 hover:opacity-100 p-0.5 hover:scale-[1.01]'
+                              }`}
+                              title={item.label}
+                            >
+                              <div className="relative h-full w-full overflow-hidden rounded-lg bg-slate-900 flex items-center justify-center">
+                                <img
+                                  src={item.thumbnailUrl}
+                                  alt={item.label}
+                                  className="h-full w-full object-cover"
+                                  referrerPolicy="no-referrer"
+                                />
+
+                                {/* Steam-style Play Icon Overlay for Video (Item 0) */}
+                                {item.type === 'video' && (
+                                  <div className="absolute inset-0 flex items-center justify-center bg-black/45 group-hover:bg-black/25 transition-colors">
+                                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-sky-500 text-white shadow-md">
+                                      <Play className="h-3.5 w-3.5 fill-white text-white ml-0.5" />
+                                    </div>
+                                    <span className="absolute bottom-1 right-1 rounded bg-black/85 px-1 py-0.5 text-[9px] font-bold text-sky-300 uppercase tracking-wider">
+                                      Video
+                                    </span>
+                                  </div>
+                                )}
+
+                                {/* Subtle Index Indicator for Screenshots */}
+                                {item.type === 'screenshot' && (
+                                  <span className="absolute bottom-1 right-1 rounded bg-black/70 px-1 py-0.5 text-[9px] font-semibold text-slate-200">
+                                    #{(item.screenshotIndex ?? 0) + 1}
+                                  </span>
+                                )}
+                              </div>
+                            </button>
+                          );
+                        })}
                       </div>
                     )}
-                  </div>
-
-                  {/* Thumbnail Row */}
-                  {app.screenshots.length > 1 && (
-                    <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-1 px-1">
-                      {app.screenshots.map((imgUrl, idx) => (
-                        <button
-                          key={imgUrl}
-                          type="button"
-                          onClick={() => setSelectedScreenshotIndex(idx)}
-                          className={`relative h-14 w-24 shrink-0 overflow-hidden rounded-xl transition-all cursor-pointer ${
-                            selectedScreenshotIndex === idx
-                              ? 'neu-inset p-1 ring-2 ring-sky-500/40'
-                              : 'neu-button opacity-70 hover:opacity-100 p-0.5'
-                          }`}
-                        >
-                          <img
-                            src={imgUrl}
-                            alt=""
-                            className="h-full w-full object-cover rounded-lg"
-                            referrerPolicy="no-referrer"
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
+                  </>
+                );
+              })()}
             </div>
           )}
 
           {/* Description Section */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">
-              Beschreibung
+              Description
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-slate-700 font-normal whitespace-pre-line">
               {app.description}
@@ -314,7 +358,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
           {/* Tags */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">
-              Tags & Eigenschaften
+              Tags &amp; Features
             </h3>
             <div className="mt-2.5 flex flex-wrap gap-2">
               {app.tags.map((tag) => (
@@ -342,9 +386,9 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
             >
               <div className="flex items-center gap-2">
                 <HelpCircle className="h-4 w-4 text-sky-600" />
-                <span>Wie installiere ich diese PWA auf meinem Desktop oder Smartphone?</span>
+                <span>How do I install this PWA on my desktop or smartphone?</span>
               </div>
-              <span className="text-slate-500 font-medium">{showInstallGuide ? 'Einklappen' : 'Anzeigen'}</span>
+              <span className="text-slate-500 font-medium">{showInstallGuide ? 'Collapse' : 'Expand'}</span>
             </button>
 
             {showInstallGuide && (
@@ -355,17 +399,17 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
                     <span>Chrome / Edge / Brave</span>
                   </div>
                   <p>
-                    Klicke in der Adressleiste auf das Installieren-Symbol oder im Menü auf <em>„App installieren“</em>.
+                    Click the install icon in the address bar or select <em>“Install App”</em> from the browser menu.
                   </p>
                 </div>
 
                 <div className="space-y-1.5 neu-inset p-3 rounded-xl">
                   <div className="flex items-center gap-1.5 font-bold text-slate-800">
                     <Smartphone className="h-4 w-4 text-sky-600" />
-                    <span>iPhone & iPad (Safari)</span>
+                    <span>iPhone &amp; iPad (Safari)</span>
                   </div>
                   <p>
-                    Tippe unten in Safari auf Teilen und wähle <em>„Zum Home-Bildschirm“</em>.
+                    Tap the Share button at the bottom of Safari and select <em>“Add to Home Screen”</em>.
                   </p>
                 </div>
 
@@ -375,7 +419,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
                     <span>Android</span>
                   </div>
                   <p>
-                    Tippe auf das Menü (drei Punkte) und wähle <em>„App installieren“</em>.
+                    Tap the browser menu (three dots) and select <em>“Install app”</em> or <em>“Add to Home screen”</em>.
                   </p>
                 </div>
               </div>
@@ -387,14 +431,14 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm font-bold text-slate-800">
                 <MessageSquare className="h-4 w-4 text-sky-600" />
-                <span>Community & Feedback (Giscus)</span>
+                <span>Community &amp; Feedback</span>
               </div>
               <span className="text-xs text-slate-500 font-mono font-medium">repo: {repo}</span>
             </div>
 
             <p className="text-xs text-slate-600 leading-relaxed font-normal">
-              Kommentare werden serverseitig kostenlos direkt über <strong>GitHub Discussions</strong> gespeichert.
-              Keine Tracking-Cookies oder fremde Server.
+              Discussions and feedback are hosted serverlessly directly on <strong>GitHub Discussions</strong>.
+              Zero tracking cookies or third-party databases.
             </p>
 
             <div
@@ -404,10 +448,10 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
               <div className="flex flex-col items-center justify-center gap-2 py-2">
                 <Github className="h-6 w-6 text-slate-600" />
                 <p className="text-slate-800 font-bold">
-                  GitHub Discussions für {app.name}
+                  GitHub Discussions for {app.name}
                 </p>
                 <p className="max-w-md text-slate-600 font-normal">
-                  Kommentare sind vorkonfiguriert für dein GitHub-Repository.
+                  Discussions are linked to your GitHub repository.
                 </p>
                 <a
                   href={`https://github.com/${repo.replace(/^https?:\/\/github\.com\//, '')}/discussions`}
@@ -416,7 +460,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
                   className="mt-1 inline-flex items-center gap-1.5 rounded-xl neu-button px-4 py-2 text-xs font-bold text-slate-800 hover:text-sky-700 transition-colors"
                 >
                   <MessageSquare className="h-3.5 w-3.5" />
-                  <span>Diskussion auf GitHub öffnen</span>
+                  <span>Open Discussion on GitHub</span>
                 </a>
               </div>
             </div>
@@ -431,7 +475,7 @@ export const AppDetailModal: React.FC<AppDetailModalProps> = ({
             onClick={onClose}
             className="rounded-xl neu-button px-4 py-2 text-xs font-bold text-slate-700 hover:text-slate-900 transition-colors cursor-pointer"
           >
-            Schließen
+            Close
           </button>
         </div>
       </div>

@@ -1,229 +1,282 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generatedAt": "2026-10-30T17:18:18.259Z",
-    "totalApps": 9,
-    "featuredCount": 5,
+    "generatedAt": "2026-10-31T15:14:01.221Z",
+    "totalApps": 10,
+    "featuredCount": 7,
     "categories": [
       "Audio & Video",
-      "Dienstprogramme",
-      "Entwicklung & Tools",
-      "Grafik & Design",
-      "Produktivität",
-      "Spiele & Fun"
+      "Developer Tools",
+      "Games & Fun",
+      "Graphics & Design",
+      "Productivity",
+      "Utilities"
     ]
   },
   "apps": [
     {
+      "id": "pwa-2048",
+      "name": "2048 PWA",
+      "url": "https://play2048.co/",
+      "description": "The legendary number sliding tile puzzle created by Gabriele Cirulli. Fully offline-capable with smooth swipe gestures and keyboard controls, saving high scores locally without advertisements.",
+      "category": "Games & Fun",
+      "tags": [
+        "Open Source",
+        "Offline",
+        "Puzzle",
+        "Classic",
+        "Casual"
+      ],
+      "iconUrl": "assets/2048-icon.png",
+      "screenshots": [
+        "assets/2048-hero.jpg",
+        "assets/2048-gameplay.jpg"
+      ],
+      "youtubeVideoId": "P6KhA1nHJts",
+      "youtubeUrl": "https://www.youtube.com/watch?v=P6KhA1nHJts",
+      "featured": true,
+      "githubUrl": "https://github.com/gabrielecirulli/2048",
+      "author": "Gabriele Cirulli",
+      "license": "MIT",
+      "addedAt": "2026-10-31"
+    },
+    {
       "id": "audiomass",
       "name": "AudioMass",
       "url": "https://audiomass.co/",
-      "description": "Vollwertiger Audio-Editor und Recorder in Web Audio und WebAssembly. Unterstützt Mehrkanal-Wellenformen, Frequenzanalysen, Hall, Kompression, Equalizer und Audio-Export ohne Server.",
+      "description": "Full-featured audio editor and sound recorder built with Web Audio and WebAssembly. Supports multi-track waveforms, frequency analysis, reverb, compression, equalizers, and serverless audio export.",
       "category": "Audio & Video",
       "tags": [
         "Open Source",
         "Offline",
         "Audio",
-        "Sound-Editing",
+        "Sound Editing",
         "WebAudio"
       ],
-      "iconUrl": "https://audiomass.co/images/audiomass-icon.png",
+      "iconUrl": "assets/audiomass-icon.png",
       "screenshots": [
-        "https://raw.githubusercontent.com/pantomi/AudioMass/master/screenshot.png"
+        "assets/audiomass-hero.jpg",
+        "assets/audiomass-multitrack.png",
+        "assets/audiomass-spectrum.jpg",
+        "assets/audiomass-editor.jpg"
       ],
-      "youtubeVideoId": "Y3s6Y6b60c4",
       "featured": true,
-      "githubUrl": "https://github.com/pantomi/AudioMass",
+      "githubUrl": "https://github.com/pkalogiros/AudioMass",
       "author": "Pantelis Kalogiros",
       "license": "GPL-3.0",
-      "addedAt": "2026-10-30"
+      "addedAt": "2026-10-31"
     },
     {
       "id": "excalidraw",
       "name": "Excalidraw",
       "url": "https://excalidraw.com/",
-      "description": "Virtuelles Whiteboard mit unverwechselbarem Handgezeichnet-Look. Unterstützt Ende-zu-Ende-Verschlüsselung, Echtzeit-Kollaboration, Offline-Modus und Export als SVG oder PNG.",
-      "category": "Produktivität",
+      "description": "Virtual collaborative whiteboard with an iconic hand-drawn feel. Features end-to-end encryption, real-time collaboration, offline mode, and crisp vector export to SVG and PNG.",
+      "category": "Productivity",
       "tags": [
         "Open Source",
         "Offline",
         "Whiteboard",
-        "Kollaboration",
-        "Diagramme"
+        "Collaboration",
+        "Diagrams"
       ],
-      "iconUrl": "https://excalidraw.com/apple-touch-icon.png",
+      "iconUrl": "assets/excalidraw-icon.png",
       "screenshots": [
-        "https://raw.githubusercontent.com/excalidraw/excalidraw/master/public/og-image-2.png"
+        "assets/excalidraw-hero.png",
+        "assets/excalidraw-showcase.png",
+        "assets/excalidraw-canvas.png"
       ],
-      "youtubeVideoId": "k_oM0kCsmq8",
+      "youtubeVideoId": "Gv9MezPAchI",
+      "youtubeUrl": "https://www.youtube.com/watch?v=Gv9MezPAchI",
       "featured": true,
       "githubUrl": "https://github.com/excalidraw/excalidraw",
       "author": "Excalidraw Team",
       "license": "MIT",
-      "addedAt": "2026-10-30"
+      "addedAt": "2026-10-31"
     },
     {
       "id": "photopea",
       "name": "Photopea",
       "url": "https://www.photopea.com/",
-      "description": "Leistungsfähiger, fortschrittlicher Bildeditor direkt im Webbrowser. Unterstützt PSD, AI, XD, RAW, Sketch und PDF mit Ebenen, Masken, Filtern und Pinselwerkzeugen.",
-      "category": "Grafik & Design",
+      "description": "Advanced image and graphic editor running directly in your web browser. Supports PSD, AI, XD, RAW, Sketch, and PDF formats with layers, vector masks, adjustment filters, and brush tools.",
+      "category": "Graphics & Design",
       "tags": [
         "Offline",
-        "Bildbearbeitung",
+        "Photo Editing",
         "PSD",
-        "Vektor",
-        "Design"
+        "Vector",
+        "Design",
+        "Freemium"
       ],
-      "iconUrl": "https://www.photopea.com/promo/icon512.png",
+      "iconUrl": "assets/photopea-icon.png",
       "screenshots": [
-        "https://www.photopea.com/promo/screen0.png",
-        "https://www.photopea.com/promo/screen1.png"
+        "assets/photopea-editor.jpg",
+        "assets/photopea-screenshot.jpg",
+        "assets/photopea-formats.jpg"
       ],
-      "youtubeVideoId": "tP_g9_G-6f4",
+      "youtubeVideoId": "a3aPaTNV5g4",
+      "youtubeUrl": "https://www.youtube.com/watch?v=a3aPaTNV5g4",
       "featured": true,
+      "githubUrl": "https://github.com/photopea/photopea",
       "author": "Ivan Kutskir",
       "license": "Freemium / Web",
-      "addedAt": "2026-10-30"
+      "addedAt": "2026-10-31"
     },
     {
       "id": "squoosh",
       "name": "Squoosh",
       "url": "https://squoosh.app/",
-      "description": "Bildkomprimierung und -optimierung der nächsten Generation von Google Chrome Labs. Nutzt WebAssembly für blitzschnelle Konvertierung in WebP, AVIF, MozJPEG und OxiPNG direkt im Browser ohne Uploads.",
-      "category": "Grafik & Design",
+      "description": "Next-generation image compression and optimization web app created by Google Chrome Labs. Employs WebAssembly for client-side conversions to WebP, AVIF, MozJPEG, and OxiPNG without server uploads.",
+      "category": "Graphics & Design",
       "tags": [
         "Open Source",
         "Offline",
         "WebAssembly",
-        "Bildkomprimierung",
+        "Image Compression",
         "AVIF"
       ],
-      "iconUrl": "https://squoosh.app/c/icon-large-582cb5be.png",
+      "iconUrl": "assets/squoosh-icon.png",
       "screenshots": [
-        "https://raw.githubusercontent.com/GoogleChromeLabs/squoosh/dev/src/client/screenshot.png"
+        "assets/squoosh-demo.jpg",
+        "assets/squoosh-artwork.jpg",
+        "assets/squoosh-device.png"
       ],
-      "youtubeVideoId": "14e_K86U0-U",
+      "youtubeVideoId": "ipNW6lJHVEs",
+      "youtubeUrl": "https://www.youtube.com/watch?v=ipNW6lJHVEs",
       "featured": true,
       "githubUrl": "https://github.com/GoogleChromeLabs/squoosh",
       "author": "Google Chrome Labs",
       "license": "Apache-2.0",
-      "addedAt": "2026-10-30"
+      "addedAt": "2026-10-31"
+    },
+    {
+      "id": "syntracker",
+      "name": "Syntracker",
+      "url": "https://syntracker.syn-labs.app",
+      "description": "Authentic retro chiptune and multi-track tracker running directly in your browser. Experience direct sequencing, pattern editing, synthesizer sound design, and vintage disc libraries.",
+      "category": "Audio & Video",
+      "tags": [
+        "Offline",
+        "WebAssembly",
+        "Audio",
+        "Open Source",
+        "Music",
+        "Retro"
+      ],
+      "iconUrl": "assets/syntracker-icon.png",
+      "screenshots": [
+        "assets/syntracker-hero.png",
+        "assets/syntracker-visualizer.png",
+        "assets/syntracker-disks.png"
+      ],
+      "featured": true,
+      "githubUrl": "https://github.com/Vectrex71/Syn-Tracker",
+      "author": "HJ.Wuethrich",
+      "license": "MIT",
+      "addedAt": "2026-10-31"
     },
     {
       "id": "vscode-web",
       "name": "Visual Studio Code for Web",
       "url": "https://vscode.dev/",
-      "description": "Kostenlose, webbasierte Code-Editor-Erfahrung direkt im Browser. Verbinde dich mit GitHub Repositories oder lokalen Ordnern via File System Access API mit Syntax-Highlighting, Git-Integration und Extensions.",
-      "category": "Entwicklung & Tools",
+      "description": "Free, browser-native code editor experience by Microsoft. Connect to GitHub repositories, review PRs, or edit local files via the File System Access API with syntax highlighting and web extensions.",
+      "category": "Developer Tools",
       "tags": [
-        "Entwicklung",
-        "Code-Editor",
+        "Development",
+        "Code Editor",
         "GitHub",
-        "File System API"
+        "File System API",
+        "Open Source"
       ],
-      "iconUrl": "https://vscode.dev/static/stable/favicon.ico",
+      "iconUrl": "assets/vscode-icon.png",
       "screenshots": [
-        "https://code.visualstudio.com/assets/blogs/2021/10/20/vscode-web.png"
+        "assets/vscode-hero.png",
+        "assets/vscode-extensions.png",
+        "assets/vscode-debugger.png"
       ],
-      "youtubeVideoId": "pB29S3B6lZs",
+      "youtubeVideoId": "2sdXMJZKLJE",
+      "youtubeUrl": "https://www.youtube.com/watch?v=2sdXMJZKLJE",
       "featured": true,
+      "githubUrl": "https://github.com/microsoft/vscode",
       "author": "Microsoft",
       "license": "MIT",
-      "addedAt": "2026-10-30"
-    },
-    {
-      "id": "pwa-2048",
-      "name": "2048 PWA",
-      "url": "https://play2048.co/",
-      "description": "Das legendäre Zahlen-Kombinations-Puzzle von Gabriele Cirulli. Vollständig offline-fähig, butterweiche Wisch- und Tastatursteuerung, speichert den Highscore lokal ohne Cookies oder Werbung.",
-      "category": "Spiele & Fun",
-      "tags": [
-        "Open Source",
-        "Offline",
-        "Puzzle",
-        "Klassiker",
-        "Casual"
-      ],
-      "iconUrl": "https://play2048.co/favicon.ico",
-      "screenshots": [
-        "https://raw.githubusercontent.com/gabrielecirulli/2048/master/meta/og_image.png"
-      ],
-      "featured": false,
-      "githubUrl": "https://github.com/gabrielecirulli/2048",
-      "author": "Gabriele Cirulli",
-      "license": "MIT",
-      "addedAt": "2026-10-30"
+      "addedAt": "2026-10-31"
     },
     {
       "id": "cyberchef",
       "name": "CyberChef",
       "url": "https://gchq.github.io/CyberChef/",
-      "description": "Das Schweizer Taschenmesser für Cyber-Analysten und Entwickler von GCHQ. Verschlüsseln, Decodieren, Hashen, Parsen und Transformieren von Datenketten mit einer visuellen Rezept-Pipeline komplett offline im Browser.",
-      "category": "Dienstprogramme",
+      "description": "The Cyber Swiss Army Knife by GCHQ for IT security analysts and developers. Encode, decode, hash, parse, and convert data structures using visual recipe pipelines completely in the browser.",
+      "category": "Utilities",
       "tags": [
         "Open Source",
         "Offline",
-        "Kryptografie",
+        "Cryptography",
         "Security",
         "Encoding"
       ],
-      "iconUrl": "https://gchq.github.io/CyberChef/images/cyberchef-128x128.png",
+      "iconUrl": "assets/cyberchef-icon.png",
       "screenshots": [
-        "https://raw.githubusercontent.com/gchq/CyberChef/master/src/core/assets/screenshot.png"
+        "assets/cyberchef-editor.jpg",
+        "assets/cyberchef-banner.png"
       ],
-      "youtubeVideoId": "Yh1e56XF5vU",
+      "youtubeVideoId": "l0ZCyfA75ZE",
+      "youtubeUrl": "https://www.youtube.com/watch?v=l0ZCyfA75ZE",
       "featured": false,
       "githubUrl": "https://github.com/gchq/CyberChef",
       "author": "GCHQ",
       "license": "Apache-2.0",
-      "addedAt": "2026-10-30"
+      "addedAt": "2026-10-31"
     },
     {
       "id": "poddr",
       "name": "Poddr Web",
       "url": "https://poddr.rocks/",
-      "description": "Minimalistischer, eleganter Podcast-Client mit iTunes & Podcast Index Suche. Bietet Kapitelmarken, Offline-Cache, anpassbare Wiedergabegeschwindigkeit und Schlaf-Timer in modernem Dark Mode.",
+      "description": "Minimalist and sleek podcast player using the iTunes directory and RSS feeds. Features chapter marks, offline episode caching, customizable playback speeds, and sleep timers in a modern dark UI.",
       "category": "Audio & Video",
       "tags": [
         "Open Source",
+        "Offline",
         "Audio",
         "Podcast",
         "Streaming"
       ],
-      "iconUrl": "https://poddr.rocks/assets/icon-192.png",
+      "iconUrl": "assets/poddr-icon.png",
       "screenshots": [
-        "https://raw.githubusercontent.com/Sn8z/Poddr/master/resources/screenshot.png"
+        "assets/poddr-hero.png",
+        "assets/poddr-player.png",
+        "assets/poddr-shelf.png"
       ],
       "featured": false,
       "githubUrl": "https://github.com/Sn8z/Poddr",
-      "author": "Sn8z",
+      "author": "Marcus Sneitz (Sn8z)",
       "license": "GPL-3.0",
-      "addedAt": "2026-10-30"
+      "addedAt": "2026-10-31"
     },
     {
       "id": "sand-spiel",
       "name": "Sandspiel",
       "url": "https://sandspiel.club/",
-      "description": "Faszinierendes zelluläres Physik-Sandkasten-Spiel in WebAssembly und Rust. Experimentiere mit Sand, Wasser, Feuer, Säure, Gas, Pflanzen und Eis mit flüssiger Echtzeit-Simulation.",
-      "category": "Spiele & Fun",
+      "description": "Fascinating cellular automata physics sandbox game built with Rust and WebAssembly. Experiment interactively with sand, water, fire, acid, gas, plant life, and ice at a fluid 60 FPS.",
+      "category": "Games & Fun",
       "tags": [
         "Open Source",
         "Offline",
         "WebAssembly",
-        "Physik-Simulation",
+        "Physics Simulation",
         "Rust"
       ],
-      "iconUrl": "https://sandspiel.club/favicon.ico",
+      "iconUrl": "assets/sandspiel-icon.png",
       "screenshots": [
-        "https://raw.githubusercontent.com/MaxBittker/sandspiel/master/images/promo.png"
+        "assets/sandspiel-hero.png",
+        "assets/sandspiel-talk.jpg"
       ],
-      "youtubeVideoId": "Yc0_1B2u3Q8",
+      "youtubeVideoId": "-dD-EaZ29hs",
+      "youtubeUrl": "https://www.youtube.com/watch?v=-dD-EaZ29hs",
       "featured": false,
       "githubUrl": "https://github.com/MaxBittker/sandspiel",
       "author": "Max Bittker",
       "license": "MIT",
-      "addedAt": "2026-10-30"
+      "addedAt": "2026-10-31"
     }
   ]
 }

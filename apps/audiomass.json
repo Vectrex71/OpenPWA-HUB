@@ -2,22 +2,24 @@
   "id": "audiomass",
   "name": "AudioMass",
   "url": "https://audiomass.co/",
-  "description": "Vollwertiger Audio-Editor und Recorder in Web Audio und WebAssembly. Unterstützt Mehrkanal-Wellenformen, Frequenzanalysen, Hall, Kompression, Equalizer und Audio-Export ohne Server.",
+  "description": "Full-featured audio editor and sound recorder built with Web Audio and WebAssembly. Supports multi-track waveforms, frequency analysis, reverb, compression, equalizers, and serverless audio export.",
   "category": "Audio & Video",
   "tags": [
     "Open Source",
     "Offline",
     "Audio",
-    "Sound-Editing",
+    "Sound Editing",
     "WebAudio"
   ],
-  "iconUrl": "https://audiomass.co/images/audiomass-icon.png",
+  "iconUrl": "assets/audiomass-icon.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/pantomi/AudioMass/master/screenshot.png"
+    "assets/audiomass-hero.jpg",
+    "assets/audiomass-multitrack.png",
+    "assets/audiomass-spectrum.jpg",
+    "assets/audiomass-editor.jpg"
   ],
-  "youtubeVideoId": "Y3s6Y6b60c4",
   "featured": true,
-  "githubUrl": "https://github.com/pantomi/AudioMass",
+  "githubUrl": "https://github.com/pkalogiros/AudioMass",
   "author": "Pantelis Kalogiros",
   "license": "GPL-3.0"
 }

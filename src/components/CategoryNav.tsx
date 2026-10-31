@@ -3,13 +3,13 @@ import { Wifi, Sparkles, Code2, ArrowUpDown, FilterX } from 'lucide-react';
 import { CategoryKey } from '../types/pwa';
 
 export const CATEGORIES: { id: CategoryKey; label: string }[] = [
-  { id: 'all', label: 'Alle Kategorien' },
-  { id: 'Produktivität', label: 'Produktivität' },
-  { id: 'Grafik & Design', label: 'Grafik & Design' },
+  { id: 'all', label: 'All Categories' },
+  { id: 'Productivity', label: 'Productivity' },
+  { id: 'Graphics & Design', label: 'Graphics & Design' },
   { id: 'Audio & Video', label: 'Audio & Video' },
-  { id: 'Entwicklung & Tools', label: 'Entwicklung' },
-  { id: 'Spiele & Fun', label: 'Spiele' },
-  { id: 'Dienstprogramme', label: 'Dienstprogramme' },
+  { id: 'Developer Tools', label: 'Developer Tools' },
+  { id: 'Games & Fun', label: 'Games & Fun' },
+  { id: 'Utilities', label: 'Utilities' },
 ];
 
 export type SortOption = 'featured' | 'name' | 'newest';
@@ -95,7 +95,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
             }`}
           >
             <Wifi className="h-3.5 w-3.5 stroke-[2.5]" />
-            <span>Offline-fähig</span>
+            <span>Offline Ready</span>
           </button>
 
           <button
@@ -121,7 +121,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
             }`}
           >
             <Sparkles className="h-3.5 w-3.5 stroke-[2.5]" />
-            <span>Highlights</span>
+            <span>Featured</span>
           </button>
 
           {/* Seamless reset filter button directly inside filter controls */}
@@ -130,10 +130,10 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
               type="button"
               onClick={onResetFilters}
               className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-all cursor-pointer neu-button text-sky-700 hover:text-sky-900 ml-1"
-              title="Alle Filter zurücksetzen"
+              title="Reset all filters"
             >
               <FilterX className="h-3.5 w-3.5" />
-              <span>Zurücksetzen</span>
+              <span>Reset</span>
             </button>
           )}
         </div>
@@ -141,15 +141,15 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
         {/* Sort Selector with matching rounded pill curve */}
         <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
           <ArrowUpDown className="h-3.5 w-3.5 text-slate-500" />
-          <span className="text-slate-500">Sortierung:</span>
+          <span className="text-slate-500">Sort:</span>
           <select
             value={sortBy}
             onChange={(e) => onChangeSort(e.target.value as SortOption)}
             className="rounded-full neu-button px-3.5 py-1.5 text-xs font-bold text-slate-700 focus:outline-none cursor-pointer"
           >
-            <option value="featured">Highlights zuerst</option>
-            <option value="name">Alphabetisch (A-Z)</option>
-            <option value="newest">Neueste Einträge</option>
+            <option value="featured">Featured First</option>
+            <option value="name">Alphabetical (A-Z)</option>
+            <option value="newest">Newest First</option>
           </select>
         </div>
       </div>

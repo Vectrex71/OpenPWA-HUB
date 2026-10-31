@@ -64,8 +64,20 @@ for (const file of files) {
       continue;
     }
 
+    // YouTube video ID extraction
+    const extractYouTubeId = (str) => {
+      if (!str) return undefined;
+      const trimmed = String(str).trim();
+      if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) {
+        return trimmed;
+      }
+      const match = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+      return match ? match[1] : trimmed;
+    };
+
     // Normalized App Entry
     const id = data.id || file.replace(/\.json$/, '').toLowerCase().replace(/[^a-z0-9_-]/g, '-');
+    const ytId = extractYouTubeId(data.youtubeVideoId || data.youtubeUrl);
     const normalizedApp = {
       id,
       name: data.name.trim(),
@@ -75,7 +87,8 @@ for (const file of files) {
       tags: data.tags.map((t) => String(t).trim()).filter(Boolean),
       iconUrl: data.iconUrl.trim(),
       screenshots: data.screenshots.map((s) => String(s).trim()).filter(Boolean),
-      youtubeVideoId: data.youtubeVideoId ? String(data.youtubeVideoId).trim() : undefined,
+      youtubeVideoId: ytId || undefined,
+      youtubeUrl: data.youtubeUrl ? String(data.youtubeUrl).trim() : (ytId ? `https://www.youtube.com/watch?v=${ytId}` : undefined),
       featured: Boolean(data.featured),
       githubUrl: data.githubUrl ? String(data.githubUrl).trim() : undefined,
       author: data.author ? String(data.author).trim() : undefined,

@@ -6,10 +6,10 @@ import {
   Sparkles,
   Wifi,
   Code2,
-  Play,
   Info,
 } from 'lucide-react';
 import { PWAEntry } from '../types/pwa';
+import { resolveAssetUrl } from '../utils/config';
 
 interface HeroProps {
   apps: PWAEntry[];
@@ -31,6 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [imageError, setImageError] = useState<Record<string, boolean>>({});
+  const [iconErrors, setIconErrors] = useState<Record<string, boolean>>({});
 
   const count = spotlightApps.length;
 
@@ -46,12 +47,12 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
     }
   }, [count]);
 
-  // Auto-advance timer (5.5s), pauses on hover
+  // Auto-advance timer (6.5s) for smooth cinematic showcase pacing; pauses on hover
   useEffect(() => {
     if (count <= 1 || isPaused) return;
     const interval = setInterval(() => {
       nextSlide();
-    }, 5500);
+    }, 6500);
     return () => clearInterval(interval);
   }, [count, isPaused, nextSlide]);
 
@@ -60,7 +61,6 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
   }
 
   const currentApp = spotlightApps[currentIndex];
-  const screenshotUrl = currentApp?.screenshots?.[0];
   const isOffline = currentApp?.tags?.some((t) => t.toLowerCase().includes('offline'));
   const isOpenSource =
     currentApp?.tags?.some((t) => t.toLowerCase().includes('open source')) ||
@@ -73,37 +73,57 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
         <div
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="relative overflow-hidden rounded-3xl neu-flat transition-all duration-300"
+          className="group relative overflow-hidden rounded-3xl neu-flat transition-all duration-300"
         >
           {/* Main Visual Frame */}
           <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full neu-inset-deep overflow-hidden">
-            {screenshotUrl && !imageError[screenshotUrl] ? (
-              <img
-                key={screenshotUrl}
-                src={screenshotUrl}
-                alt={`${currentApp.name} Screenshot`}
-                className="h-full w-full object-cover object-top opacity-95 transition-all duration-700 hover:scale-[1.02]"
-                referrerPolicy="no-referrer"
-                onError={() =>
-                  setImageError((prev) => ({ ...prev, [screenshotUrl]: true }))
-                }
-              />
-            ) : (
-              <div className="h-full w-full bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-950 flex items-center justify-center">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-900/10 via-slate-900/40 to-slate-950" />
-              </div>
-            )}
+            {/* Stack of spotlight slides with smooth 1000ms cross-dissolve & butter-smooth Ken Burns */}
+            {spotlightApps.map((app, idx) => {
+              const isActive = idx === currentIndex;
+              // Rule: Screenshot 1 (index 0) = Hero
+              const rawScreenshot = app.screenshots?.[0];
+              const screenshotUrl = rawScreenshot ? resolveAssetUrl(rawScreenshot) : undefined;
+              const kenBurnsClass = idx % 2 === 0 ? 'kenburns-smooth-1' : 'kenburns-smooth-2';
 
-            {/* Ambient Gradient Scrim to ensure crisp overlay legibility */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent sm:bg-gradient-to-r sm:from-slate-950/90 sm:via-slate-950/60 sm:to-transparent pointer-events-none" />
+              return (
+                <div
+                  key={app.id}
+                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                    isActive ? 'opacity-100 z-0' : 'opacity-0 pointer-events-none -z-10'
+                  }`}
+                  aria-hidden={!isActive}
+                >
+                  {screenshotUrl && !imageError[screenshotUrl] ? (
+                    <img
+                      src={screenshotUrl}
+                      alt={`${app.name} Showcase Screenshot`}
+                      className={`h-full w-full object-cover object-center ${
+                        isActive ? kenBurnsClass : ''
+                      }`}
+                      referrerPolicy="no-referrer"
+                      onError={() =>
+                        setImageError((prev) => ({ ...prev, [screenshotUrl]: true }))
+                      }
+                    />
+                  ) : (
+                    <div className="h-full w-full bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-950 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-900/10 via-slate-900/40 to-slate-950" />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            {/* Ambient Gradient Scrim to guarantee pristine text contrast & legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-slate-950/20 sm:bg-gradient-to-r sm:from-slate-950/95 sm:via-slate-950/70 sm:to-transparent pointer-events-none z-10" />
 
             {/* Left/Right Controls on Screenshot */}
-            <div className="absolute inset-y-0 left-3 right-3 flex items-center justify-between pointer-events-none">
+            <div className="absolute inset-y-0 left-3 right-3 flex items-center justify-between pointer-events-none z-20">
               <button
                 type="button"
                 onClick={prevSlide}
                 className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-2xl bg-white/80 hover:bg-white text-slate-800 shadow-md backdrop-blur-md transition-all active:scale-90 cursor-pointer"
-                title="Vorherige PWA"
+                title="Previous PWA"
               >
                 <ChevronLeft className="h-5 w-5 stroke-[2.5]" />
               </button>
@@ -111,26 +131,33 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
                 type="button"
                 onClick={nextSlide}
                 className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-2xl bg-white/80 hover:bg-white text-slate-800 shadow-md backdrop-blur-md transition-all active:scale-90 cursor-pointer"
-                title="Nächste PWA"
+                title="Next PWA"
               >
                 <ChevronRight className="h-5 w-5 stroke-[2.5]" />
               </button>
             </div>
 
             {/* Floating Info Overlay inside the Widescreen Frame */}
-            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 max-w-2xl text-white">
+            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 max-w-2xl text-white z-20">
               <div className="flex items-center gap-3 mb-2">
                 {/* App Icon */}
                 <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-white/95 p-1.5 shadow-lg shrink-0 flex items-center justify-center overflow-hidden">
-                  <img
-                    src={currentApp.iconUrl}
-                    alt={currentApp.name}
-                    className="h-full w-full object-contain rounded-xl"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      (e.target as HTMLElement).style.display = 'none';
-                    }}
-                  />
+                  {!iconErrors[currentApp.id] && currentApp.iconUrl ? (
+                    <img
+                      key={currentApp.id}
+                      src={resolveAssetUrl(currentApp.iconUrl)}
+                      alt={`${currentApp.name} Icon`}
+                      className="h-full w-full object-contain rounded-xl"
+                      referrerPolicy="no-referrer"
+                      onError={() =>
+                        setIconErrors((prev) => ({ ...prev, [currentApp.id]: true }))
+                      }
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 text-white font-extrabold text-lg sm:text-xl shadow-inner">
+                      {currentApp.name.slice(0, 2).toUpperCase()}
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -141,7 +168,7 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
                     {currentApp.featured && (
                       <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/20 border border-amber-400/40 px-2 py-0.5 text-[11px] font-bold text-amber-300">
                         <Sparkles className="h-3 w-3 fill-amber-300" />
-                        <span>Empfehlung</span>
+                        <span>Featured</span>
                       </span>
                     )}
                   </div>
@@ -176,7 +203,7 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold px-4 sm:px-5 py-2.5 text-xs shadow-lg shadow-sky-500/30 transition-all active:scale-95"
                 >
-                  <span>App jetzt starten</span>
+                  <span>Launch App</span>
                   <ExternalLink className="h-3.5 w-3.5 stroke-[2.5]" />
                 </a>
 
@@ -186,7 +213,7 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
                   className="inline-flex items-center gap-1.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white font-bold px-4 py-2.5 text-xs backdrop-blur-md transition-all active:scale-95 cursor-pointer"
                 >
                   <Info className="h-3.5 w-3.5" />
-                  <span>Details ansehen</span>
+                  <span>View Details</span>
                 </button>
               </div>
             </div>
@@ -226,7 +253,7 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
                       ? 'w-6 bg-sky-600'
                       : 'w-2 bg-slate-400 hover:bg-slate-600'
                   }`}
-                  title={`Zu Slide ${idx + 1}`}
+                  title={`Go to slide ${idx + 1}`}
                 />
               ))}
             </div>

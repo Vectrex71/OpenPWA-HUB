@@ -2,20 +2,22 @@
   "id": "sand-spiel",
   "name": "Sandspiel",
   "url": "https://sandspiel.club/",
-  "description": "Faszinierendes zelluläres Physik-Sandkasten-Spiel in WebAssembly und Rust. Experimentiere mit Sand, Wasser, Feuer, Säure, Gas, Pflanzen und Eis mit flüssiger Echtzeit-Simulation.",
-  "category": "Spiele & Fun",
+  "description": "Fascinating cellular automata physics sandbox game built with Rust and WebAssembly. Experiment interactively with sand, water, fire, acid, gas, plant life, and ice at a fluid 60 FPS.",
+  "category": "Games & Fun",
   "tags": [
     "Open Source",
     "Offline",
     "WebAssembly",
-    "Physik-Simulation",
+    "Physics Simulation",
     "Rust"
   ],
-  "iconUrl": "https://sandspiel.club/favicon.ico",
+  "iconUrl": "assets/sandspiel-icon.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/MaxBittker/sandspiel/master/images/promo.png"
+    "assets/sandspiel-hero.png",
+    "assets/sandspiel-talk.jpg"
   ],
-  "youtubeVideoId": "Yc0_1B2u3Q8",
+  "youtubeVideoId": "-dD-EaZ29hs",
+  "youtubeUrl": "https://www.youtube.com/watch?v=-dD-EaZ29hs",
   "featured": false,
   "githubUrl": "https://github.com/MaxBittker/sandspiel",
   "author": "Max Bittker",

@@ -2,20 +2,23 @@
   "id": "poddr",
   "name": "Poddr Web",
   "url": "https://poddr.rocks/",
-  "description": "Minimalistischer, eleganter Podcast-Client mit iTunes & Podcast Index Suche. Bietet Kapitelmarken, Offline-Cache, anpassbare Wiedergabegeschwindigkeit und Schlaf-Timer in modernem Dark Mode.",
+  "description": "Minimalist and sleek podcast player using the iTunes directory and RSS feeds. Features chapter marks, offline episode caching, customizable playback speeds, and sleep timers in a modern dark UI.",
   "category": "Audio & Video",
   "tags": [
     "Open Source",
+    "Offline",
     "Audio",
     "Podcast",
     "Streaming"
   ],
-  "iconUrl": "https://poddr.rocks/assets/icon-192.png",
+  "iconUrl": "assets/poddr-icon.png",
   "screenshots": [
-    "https://raw.githubusercontent.com/Sn8z/Poddr/master/resources/screenshot.png"
+    "assets/poddr-hero.png",
+    "assets/poddr-player.png",
+    "assets/poddr-shelf.png"
   ],
   "featured": false,
   "githubUrl": "https://github.com/Sn8z/Poddr",
-  "author": "Sn8z",
+  "author": "Marcus Sneitz (Sn8z)",
   "license": "GPL-3.0"
 }

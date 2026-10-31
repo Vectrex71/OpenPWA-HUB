@@ -29,23 +29,23 @@ const COMMON_TAGS = [
   '3D',
   'Audio',
   'WebAssembly',
-  'Bildbearbeitung',
-  'Diagramme',
-  'Kollaboration',
-  'Entwicklung',
+  'Photo Editing',
+  'Diagrams',
+  'Collaboration',
+  'Development',
   'Security',
   'Casual',
   'Puzzle',
 ];
 
 const PREDEFINED_CATEGORIES = [
-  'Produktivität',
-  'Grafik & Design',
+  'Productivity',
+  'Graphics & Design',
   'Audio & Video',
-  'Entwicklung & Tools',
-  'Spiele & Fun',
-  'Dienstprogramme',
-  'Bildung & Wissenschaft',
+  'Developer Tools',
+  'Games & Fun',
+  'Utilities',
+  'Education & Science',
 ];
 
 export const SubmissionModal: React.FC<SubmissionModalProps> = ({
@@ -88,17 +88,17 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
   // Validation
   const errors = useMemo(() => {
     const errs: Record<string, string> = {};
-    if (!name.trim()) errs.name = 'App-Name ist erforderlich.';
+    if (!name.trim()) errs.name = 'App name is required.';
     if (!url.trim()) {
-      errs.url = 'URL ist erforderlich.';
+      errs.url = 'Web URL is required.';
     } else if (!/^https?:\/\/.+/.test(url.trim())) {
-      errs.url = 'URL muss mit https:// oder http:// beginnen.';
+      errs.url = 'URL must start with https:// or http://';
     }
     if (!description.trim() || description.trim().length < 15) {
-      errs.description = 'Beschreibung muss mindestens 15 Zeichen lang sein.';
+      errs.description = 'Description must be at least 15 characters.';
     }
     if (!iconUrl.trim()) {
-      errs.iconUrl = 'Icon-URL ist erforderlich.';
+      errs.iconUrl = 'Icon URL is required.';
     }
     return errs;
   }, [name, url, description, iconUrl]);
@@ -109,11 +109,11 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
   const generatedAppEntry: PWAEntry = useMemo(() => {
     return {
       id: idSlug,
-      name: name.trim() || 'Meine PWA',
+      name: name.trim() || 'My PWA',
       url: url.trim() || 'https://example.com',
       description:
         description.trim() ||
-        'Eine innovative Progressive Web App mit Offline-Unterstützung.',
+        'An innovative Progressive Web App with offline support.',
       category,
       tags: selectedTags.length > 0 ? selectedTags : ['PWA'],
       iconUrl:
@@ -224,10 +224,10 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
         <div className="flex items-center justify-between border-b border-slate-300/40 px-6 py-4 bg-[#e6ecf4]">
           <div>
             <h2 id="submit-modal-title" className="text-lg font-extrabold text-slate-900 tracking-tight">
-              PWA vorschlagen
+              Submit a PWA
             </h2>
             <p className="text-xs text-slate-500 font-medium">
-              Formular ausfüllen · JSON wird automatisch generiert und an ein GitHub Issue übergeben
+              Fill out the form · JSON is generated automatically and pre-filled in a new GitHub Issue
             </p>
           </div>
 
@@ -240,7 +240,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
           </button>
         </div>
 
-        {/* View Switcher Tabs (Formular / Vorschau / JSON) */}
+        {/* View Switcher Tabs (Form / Preview / JSON) */}
         <div className="flex items-center gap-2 border-b border-slate-300/40 bg-[#e6ecf4] px-6 py-3">
           <button
             type="button"
@@ -251,7 +251,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
                 : 'neu-button text-slate-600 hover:text-slate-900'
             }`}
           >
-            1. Daten eingeben
+            1. App Details
           </button>
           <button
             type="button"
@@ -263,7 +263,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
             }`}
           >
             <Eye className="h-3.5 w-3.5" />
-            <span>2. Live-Vorschau</span>
+            <span>2. Live Preview</span>
           </button>
           <button
             type="button"
@@ -275,7 +275,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
             }`}
           >
             <Code className="h-3.5 w-3.5" />
-            <span>3. Generiertes JSON</span>
+            <span>3. Generated JSON</span>
           </button>
         </div>
 
@@ -287,13 +287,13 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    App-Name *
+                    App Name *
                   </label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="z. B. Photopea oder Excalidraw"
+                    placeholder="e.g. Photopea or Excalidraw"
                     className="w-full rounded-xl neu-inset px-4 py-2.5 text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none"
                   />
                   {touched && errors.name && (
@@ -305,7 +305,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Kategorie *
+                    Category *
                   </label>
                   <select
                     value={category}
@@ -324,13 +324,13 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
               {/* Web App URL */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  Web-URL (Startseite der PWA) *
+                  Web URL (PWA Homepage) *
                 </label>
                 <input
                   type="url"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
-                  placeholder="https://meine-pwa.de/"
+                  placeholder="https://my-pwa.app/"
                   className="w-full rounded-xl neu-inset px-4 py-2.5 text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none"
                 />
                 {touched && errors.url && (
@@ -343,13 +343,13 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
               {/* Description */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  Beschreibung *
+                  Description *
                 </label>
                 <textarea
                   rows={3}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Kurze, prägnante Beschreibung der Funktionen, Einsatzzwecke und Besonderheiten..."
+                  placeholder="Concise overview of features, use-cases, and offline capabilities..."
                   className="w-full rounded-xl neu-inset px-4 py-2.5 text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none"
                 />
                 {touched && errors.description && (
@@ -362,21 +362,21 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
               {/* Icon URL */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  Icon URL (mindestens 192x192 oder 512x512 PNG/SVG) *
+                  Icon URL (at least 192x192 or 512x512 PNG/SVG) *
                 </label>
                 <div className="flex items-center gap-3">
                   <input
                     type="url"
                     value={iconUrl}
                     onChange={(e) => setIconUrl(e.target.value)}
-                    placeholder="https://meine-pwa.de/icon-512.png"
+                    placeholder="https://my-pwa.app/icon-512.png"
                     className="flex-1 rounded-xl neu-inset px-4 py-2.5 text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none"
                   />
                   {iconUrl && (
                     <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl neu-flat-sm p-1 flex items-center justify-center">
                       <img
                         src={iconUrl}
-                        alt="Icon Vorschau"
+                        alt="Icon Preview"
                         className="max-h-full max-w-full object-contain"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
@@ -396,7 +396,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
               {/* Tags Selection & Custom Tag */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  Tags & Eigenschaften
+                  Tags &amp; Features
                 </label>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {COMMON_TAGS.map((tag) => {
@@ -425,7 +425,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
                     value={customTagInput}
                     onChange={(e) => setCustomTagInput(e.target.value)}
                     onKeyDown={handleAddCustomTag}
-                    placeholder="Weiteren Tag hinzufügen..."
+                    placeholder="Add custom tag..."
                     className="flex-1 rounded-xl neu-inset px-3 py-1.5 text-xs font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none"
                   />
                   <button
@@ -433,7 +433,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
                     onClick={handleAddCustomTag}
                     className="rounded-xl neu-button px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:text-slate-900 transition-colors cursor-pointer"
                   >
-                    Hinzufügen
+                    Add
                   </button>
                 </div>
               </div>
@@ -442,14 +442,14 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <label className="text-xs font-bold text-slate-700">
-                    Screenshots (Bild-URLs)
+                    Screenshots (Image URLs)
                   </label>
                   <button
                     type="button"
                     onClick={handleAddScreenshotField}
                     className="flex items-center gap-1 text-[11px] font-bold text-sky-700 hover:text-sky-900 cursor-pointer"
                   >
-                    <Plus className="h-3 w-3" /> Weiteren Screenshot hinzufügen
+                    <Plus className="h-3 w-3" /> Add screenshot URL
                   </button>
                 </div>
 
@@ -460,7 +460,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
                         type="url"
                         value={scUrl}
                         onChange={(e) => handleScreenshotChange(idx, e.target.value)}
-                        placeholder={`https://meine-pwa.de/screenshot-${idx + 1}.png`}
+                        placeholder={`https://my-pwa.app/screenshot-${idx + 1}.png`}
                         className="flex-1 rounded-xl neu-inset px-3.5 py-2 text-xs font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none"
                       />
                       {screenshotUrls.length > 1 && (
@@ -468,7 +468,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
                           type="button"
                           onClick={() => handleRemoveScreenshotField(idx)}
                           className="flex h-8 w-8 items-center justify-center rounded-xl neu-button text-slate-500 hover:text-rose-600 transition-colors cursor-pointer"
-                          title="Entfernen"
+                          title="Remove"
                         >
                           <Trash2 className="h-3.5 w-3.5" />
                         </button>
@@ -481,19 +481,19 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
               {/* Optional Fields (YouTube ID, Author, License, GitHub) */}
               <div className="border-t border-slate-300/40 pt-4 space-y-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                  Optionale Zusatzangaben
+                  Optional Additional Information
                 </span>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-slate-600 mb-1">
-                      YouTube Video ID (z. B. <code className="text-sky-700 font-bold">dQw4w9WgXcQ</code>)
+                      YouTube Video ID (e.g. <code className="text-sky-700 font-bold">dQw4w9WgXcQ</code>)
                     </label>
                     <input
                       type="text"
                       value={youtubeVideoId}
                       onChange={(e) => setYoutubeVideoId(e.target.value)}
-                      placeholder="Nur die Video-ID (11 Zeichen)"
+                      placeholder="Video ID only (11 characters)"
                       className="w-full rounded-xl neu-inset px-3 py-2 text-xs font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none"
                     />
                   </div>
@@ -513,20 +513,20 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
 
                   <div>
                     <label className="block text-xs font-medium text-slate-600 mb-1">
-                      Autor / Organisation
+                      Author / Organization
                     </label>
                     <input
                       type="text"
                       value={author}
                       onChange={(e) => setAuthor(e.target.value)}
-                      placeholder="z. B. Google Chrome Labs"
+                      placeholder="e.g. Google Chrome Labs"
                       className="w-full rounded-xl neu-inset px-3 py-2 text-xs font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-medium text-slate-600 mb-1">
-                      Lizenz (z. B. MIT, Apache-2.0, Kostenlos)
+                      License (e.g. MIT, Apache-2.0, Free)
                     </label>
                     <input
                       type="text"
@@ -545,7 +545,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
           {activeTab === 'preview' && (
             <div className="space-y-4">
               <div className="rounded-2xl neu-flat-sm p-4 text-xs font-semibold text-sky-800">
-                <span>Live-Vorschau:</span> So wird die App-Karte im Store für alle Besucher gerendert.
+                <span>Live Preview:</span> This is how the card will be displayed to all visitors.
               </div>
 
               <div className="max-w-md mx-auto">
@@ -558,7 +558,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
           {activeTab === 'json' && (
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs text-slate-600">
-                <span>Dateiname im Ordner <code className="text-sky-700 font-mono font-bold">apps/{idSlug}.json</code>:</span>
+                <span>File location: <code className="text-sky-700 font-mono font-bold">apps/{idSlug}.json</code>:</span>
                 <span className="font-mono text-slate-500 font-medium">{formattedJson.length} Bytes</span>
               </div>
 
@@ -576,20 +576,20 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
               type="button"
               onClick={handleCopyJson}
               className="flex items-center gap-1.5 rounded-xl neu-button px-3 py-2 text-xs font-bold text-slate-700 hover:text-slate-900 transition-colors cursor-pointer"
-              title="JSON in die Zwischenablage kopieren"
+              title="Copy JSON to clipboard"
             >
               {copiedJson ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
-              <span>{copiedJson ? 'Kopiert!' : 'JSON kopieren'}</span>
+              <span>{copiedJson ? 'Copied!' : 'Copy JSON'}</span>
             </button>
 
             <button
               type="button"
               onClick={handleDownloadJson}
               className="flex items-center gap-1.5 rounded-xl neu-button px-3 py-2 text-xs font-bold text-slate-700 hover:text-slate-900 transition-colors cursor-pointer"
-              title="Als .json Datei herunterladen"
+              title="Download as .json file"
             >
               <Download className="h-3.5 w-3.5" />
-              <span>.json herunterladen</span>
+              <span>Download .json</span>
             </button>
 
             {onSimulateAdd && (
@@ -602,22 +602,22 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
                   onClose();
                 }}
                 className="hidden sm:inline-flex items-center gap-1.5 rounded-xl neu-button px-3 py-2 text-xs font-bold text-sky-700 hover:text-sky-900 transition-colors cursor-pointer"
-                title="Sofort lokal in dieser Ansicht testen"
+                title="Test immediately in local view"
               >
                 <Sparkles className="h-3.5 w-3.5" />
-                <span>Lokal testen</span>
+                <span>Test Locally</span>
               </button>
             )}
           </div>
 
-          {/* Primary Action Button: "Auf GitHub einreichen" */}
+          {/* Primary Action Button: "Submit via GitHub Issue" */}
           <button
             type="button"
             onClick={handleGitHubSubmit}
             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl neu-button-primary px-5 py-2.5 text-xs font-bold transition-all active:scale-95 cursor-pointer"
           >
             <Github className="h-4 w-4" />
-            <span>Auf GitHub einreichen (Issue erstellen)</span>
+            <span>Submit via GitHub Issue</span>
             <ExternalLink className="h-3.5 w-3.5 opacity-90" />
           </button>
         </div>

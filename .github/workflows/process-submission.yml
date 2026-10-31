@@ -1,0 +1,93 @@
+name: Auto-Process PWA Submissions
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  create-pr:
+    name: Convert Issue to Pull Request
+    # Run only for PWA submission issues
+    if: |
+      contains(github.event.issue.labels.*.name, 'pwa-submission') ||
+      startsWith(github.event.issue.title, '[Neue PWA]') ||
+      startsWith(github.event.issue.title, '[New PWA]')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Extract & Validate PWA JSON from Issue
+        id: process
+        run: node scripts/process-issue.js
+
+      - name: Test Database Compilation
+        run: node scripts/build-db.js
+
+      - name: Configure Git Author
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create Branch & Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ISSUE_NUM="${{ steps.process.outputs.issue_number }}"
+          APP_ID="${{ steps.process.outputs.app_id }}"
+          RAW_NAME="${{ steps.process.outputs.app_name }}"
+          # Decode URL-encoded app name
+          APP_NAME=$(node -e "console.log(decodeURIComponent('$RAW_NAME'))")
+          BRANCH="submission/issue-${ISSUE_NUM}-${APP_ID}"
+
+          # Check if PR already exists for this branch
+          EXISTING_PR=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number')
+          if [ -n "$EXISTING_PR" ]; then
+            echo "PR #$EXISTING_PR already exists for branch $BRANCH."
+            exit 0
+          fi
+
+          # Create branch and commit apps/<id>.json
+          git checkout -b "$BRANCH"
+          git add apps/${APP_ID}.json
+          git commit -m "feat(pwa): add ${APP_NAME} (${APP_ID}) from #${ISSUE_NUM}"
+          git push -u origin "$BRANCH" --force
+
+          # Create Pull Request
+          PR_URL=$(gh pr create \
+            --title "🚀 [PWA Submission]: Add ${APP_NAME}" \
+            --body "Automated Pull Request generated from Issue #${ISSUE_NUM}.
+
+### Submitted App Details:
+- **Name:** ${APP_NAME}
+- **File:** \`apps/${APP_ID}.json\`
+
+Closes #${ISSUE_NUM}.
+
+👉 **Maintainer Action:** Click **'Merge pull request'** to publish this PWA immediately to OpenPWA Hub!" \
+            --head "$BRANCH" \
+            --base main)
+
+          echo "Created PR: $PR_URL"
+
+          # Comment on the Issue with a direct link
+          gh issue comment "$ISSUE_NUM" --body "🎉 **Automatischer Pull Request erstellt!**
+
+Ein Pull Request wurde automatisch für **${APP_NAME}** generiert:
+👉 **$PR_URL**
+
+Klicke einfach im Pull Request auf den grünen Button **'Merge pull request'**, um die PWA in den Hub aufzunehmen!"
