@@ -34,19 +34,41 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#e6ecf4]/95 backdrop-blur-md border-b border-white/60 shadow-[0_4px_14px_rgba(184,196,214,0.4)]">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        {/* Clean Typographic Brand Mark */}
-        <a
-          href="#"
-          className="group text-lg sm:text-xl font-extrabold tracking-tight text-slate-800 whitespace-nowrap shrink-0 transition-opacity hover:opacity-90"
-        >
-          OpenPWA <span className="text-sky-600 font-black">Hub</span>
-        </a>
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 py-2.5 sm:py-0 sm:h-16 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-4">
+        {/* Top Bar on Mobile / Left Section on Desktop */}
+        <div className="flex items-center justify-between gap-3 w-full sm:w-auto">
+          {/* Brand Mark with Custom App Icon */}
+          <a
+            href="#"
+            className="group flex items-center gap-2 text-lg sm:text-xl font-extrabold tracking-tight text-slate-800 whitespace-nowrap shrink-0 transition-transform active:scale-95"
+          >
+            <img
+              src="/icon.svg"
+              alt="OpenPWA Logo"
+              className="h-7 w-7 sm:h-8 sm:w-8 rounded-xl shadow-md transition-transform group-hover:rotate-6"
+            />
+            <span>
+              OpenPWA <span className="text-sky-600 font-black">Hub</span>
+            </span>
+          </a>
 
-        {/* Right Section: Compact Search Bar + Primary Action */}
-        <div className="flex items-center gap-3 shrink-0">
-          {/* Stable Neumorphic Search Bar */}
-          <div className="relative flex items-center rounded-xl neu-inset px-2.5 py-1.5 w-44 sm:w-60 md:w-72">
+          {/* Action button on Mobile */}
+          <div className="flex items-center sm:hidden shrink-0">
+            <button
+              type="button"
+              onClick={onOpenSubmit}
+              className="flex items-center gap-1.5 rounded-xl neu-button-primary px-3 py-1.5 text-xs font-bold tracking-wide whitespace-nowrap cursor-pointer shadow-sm active:scale-95"
+              title="Submit a PWA"
+            >
+              <Plus className="h-3.5 w-3.5 stroke-[2.5]" />
+              <span>Submit PWA</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Search Bar: Full-width on Mobile, Compact on Desktop */}
+        <div className="w-full sm:w-auto flex-1 sm:max-w-xs md:max-w-sm">
+          <div className="relative flex items-center rounded-xl neu-inset px-3 py-1.5 sm:py-1.5 w-full">
             <Search className="pointer-events-none h-3.5 w-3.5 text-slate-400 mr-2 shrink-0" />
             <input
               ref={searchInputRef}
@@ -73,15 +95,17 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
           </div>
+        </div>
 
-          {/* Primary Action Button: "+ Submit PWA" */}
+        {/* Desktop-only Actions */}
+        <div className="hidden sm:flex items-center gap-3 shrink-0">
           <button
             type="button"
             onClick={onOpenSubmit}
-            className="flex items-center gap-1.5 sm:gap-2 rounded-xl neu-button-primary px-3.5 sm:px-4 py-2 text-xs font-bold tracking-wide whitespace-nowrap shrink-0 cursor-pointer"
+            className="flex items-center gap-1.5 rounded-xl neu-button-primary px-4 py-2 text-xs font-bold tracking-wide whitespace-nowrap cursor-pointer active:scale-95 shadow-sm"
           >
             <Plus className="h-4 w-4 stroke-[2.5]" />
-            <span>+ Submit PWA</span>
+            <span>Submit PWA</span>
           </button>
         </div>
       </div>

@@ -67,16 +67,16 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
     Boolean(currentApp?.githubUrl);
 
   return (
-    <section className="relative pt-3 sm:pt-4 pb-2">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative pt-2 sm:pt-4 pb-2">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         {/* Rotating Showcase Carousel Card */}
         <div
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           className="group relative overflow-hidden rounded-3xl neu-flat transition-all duration-300"
         >
-          {/* Main Visual Frame */}
-          <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full neu-inset-deep overflow-hidden">
+          {/* Main Visual Frame: Responsive height on mobile prevents crowding */}
+          <div className="relative h-[390px] sm:h-auto sm:aspect-[21/9] w-full neu-inset-deep overflow-hidden">
             {/* Stack of spotlight slides with smooth 1000ms cross-dissolve & butter-smooth Ken Burns */}
             {spotlightApps.map((app, idx) => {
               const isActive = idx === currentIndex;
@@ -114,11 +114,34 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
               );
             })}
 
-            {/* Ambient Gradient Scrim to guarantee pristine text contrast & legibility */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-slate-950/20 sm:bg-gradient-to-r sm:from-slate-950/95 sm:via-slate-950/70 sm:to-transparent pointer-events-none z-10" />
+            {/* Ambient Gradient Scrim: Deep, high-contrast protection against bright backgrounds */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/50 sm:bg-gradient-to-r sm:from-slate-950/95 sm:via-slate-950/70 sm:to-transparent pointer-events-none z-10" />
 
-            {/* Left/Right Controls on Screenshot */}
-            <div className="absolute inset-y-0 left-3 right-3 flex items-center justify-between pointer-events-none z-20">
+            {/* Mobile Controls: Sleek top-right buttons that NEVER block or overlap text */}
+            <div className="sm:hidden absolute top-3.5 right-3.5 z-30 flex items-center gap-1.5">
+              <span className="text-[10px] font-bold text-slate-300 bg-slate-900/80 px-2 py-1 rounded-lg backdrop-blur-md border border-white/10">
+                {currentIndex + 1}/{count}
+              </span>
+              <button
+                type="button"
+                onClick={prevSlide}
+                className="flex h-8 w-8 items-center justify-center rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white shadow-md backdrop-blur-md border border-white/15 active:scale-90 cursor-pointer"
+                title="Previous PWA"
+              >
+                <ChevronLeft className="h-4 w-4 stroke-[2.5]" />
+              </button>
+              <button
+                type="button"
+                onClick={nextSlide}
+                className="flex h-8 w-8 items-center justify-center rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white shadow-md backdrop-blur-md border border-white/15 active:scale-90 cursor-pointer"
+                title="Next PWA"
+              >
+                <ChevronRight className="h-4 w-4 stroke-[2.5]" />
+              </button>
+            </div>
+
+            {/* Desktop Controls: Side Arrows */}
+            <div className="hidden sm:flex absolute inset-y-0 left-3 right-3 items-center justify-between pointer-events-none z-20">
               <button
                 type="button"
                 onClick={prevSlide}
@@ -137,11 +160,11 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
               </button>
             </div>
 
-            {/* Floating Info Overlay inside the Widescreen Frame */}
-            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 max-w-2xl text-white z-20">
-              <div className="flex items-center gap-3 mb-2">
+            {/* Floating Info Overlay inside the Frame */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 max-w-2xl text-white z-20">
+              <div className="flex items-start sm:items-center gap-3 mb-2.5">
                 {/* App Icon */}
-                <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-white/95 p-1.5 shadow-lg shrink-0 flex items-center justify-center overflow-hidden">
+                <div className="h-11 w-11 sm:h-14 sm:w-14 rounded-2xl bg-white/95 p-1.5 shadow-lg shrink-0 flex items-center justify-center overflow-hidden">
                   {!iconErrors[currentApp.id] && currentApp.iconUrl ? (
                     <img
                       key={currentApp.id}
@@ -154,54 +177,59 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
                       }
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 text-white font-extrabold text-lg sm:text-xl shadow-inner">
+                    <div className="flex h-full w-full items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 text-white font-extrabold text-base sm:text-xl shadow-inner">
                       {currentApp.name.slice(0, 2).toUpperCase()}
                     </div>
                   )}
                 </div>
 
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight drop-shadow-sm text-white">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold tracking-tight drop-shadow-sm text-white truncate">
                       {currentApp.name}
                     </h2>
                     {currentApp.featured && (
-                      <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/20 border border-amber-400/40 px-2 py-0.5 text-[11px] font-bold text-amber-300">
+                      <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/20 border border-amber-400/40 px-2 py-0.5 text-[10px] sm:text-[11px] font-bold text-amber-300">
                         <Sparkles className="h-3 w-3 fill-amber-300" />
                         <span>Featured</span>
                       </span>
                     )}
                   </div>
 
-                  <div className="flex items-center gap-2 text-xs font-medium text-slate-300">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] sm:text-xs font-medium text-slate-300 mt-0.5">
                     <span className="text-sky-300 font-semibold">{currentApp.category}</span>
-                    <span aria-hidden="true" className="text-slate-400">·</span>
                     {isOffline && (
-                      <span className="inline-flex items-center gap-1 text-emerald-300 font-semibold">
-                        <Wifi className="h-3 w-3" /> Offline
-                      </span>
+                      <>
+                        <span aria-hidden="true" className="text-slate-500">·</span>
+                        <span className="inline-flex items-center gap-1 text-emerald-300 font-semibold">
+                          <Wifi className="h-3 w-3" /> Offline
+                        </span>
+                      </>
                     )}
                     {isOpenSource && (
-                      <span className="inline-flex items-center gap-1 text-sky-200 font-semibold">
-                        <Code2 className="h-3 w-3" /> Open Source
-                      </span>
+                      <>
+                        <span aria-hidden="true" className="text-slate-500">·</span>
+                        <span className="inline-flex items-center gap-1 text-sky-200 font-semibold">
+                          <Code2 className="h-3 w-3" /> Open Source
+                        </span>
+                      </>
                     )}
                   </div>
                 </div>
               </div>
 
-              {/* Description */}
-              <p className="line-clamp-2 text-xs sm:text-sm text-slate-200 leading-relaxed font-normal drop-shadow-sm max-w-xl">
+              {/* Description: Protected with line-clamp and high-contrast text */}
+              <p className="line-clamp-2 sm:line-clamp-3 text-xs sm:text-sm text-slate-200 leading-relaxed font-normal drop-shadow-sm max-w-xl">
                 {currentApp.description}
               </p>
 
-              {/* Actions */}
-              <div className="mt-4 flex flex-wrap items-center gap-3">
+              {/* Responsive Action Buttons: 2-column grid on mobile, row on desktop */}
+              <div className="mt-3.5 sm:mt-4 grid grid-cols-2 sm:flex sm:items-center gap-2 sm:gap-3">
                 <a
                   href={currentApp.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold px-4 sm:px-5 py-2.5 text-xs shadow-lg shadow-sky-500/30 transition-all active:scale-95"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold px-3 sm:px-5 py-2 sm:py-2.5 text-xs shadow-lg shadow-sky-500/30 transition-all active:scale-95 text-center"
                 >
                   <span>Launch App</span>
                   <ExternalLink className="h-3.5 w-3.5 stroke-[2.5]" />
@@ -210,7 +238,7 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
                 <button
                   type="button"
                   onClick={() => onOpenDetails(currentApp)}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white font-bold px-4 py-2.5 text-xs backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white font-bold px-3 sm:px-4 py-2 sm:py-2.5 text-xs backdrop-blur-md transition-all active:scale-95 cursor-pointer text-center"
                 >
                   <Info className="h-3.5 w-3.5" />
                   <span>View Details</span>
@@ -219,9 +247,9 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
             </div>
           </div>
 
-          {/* Bottom App Quick Selector Tabs & Progress Indicator */}
-          <div className="flex items-center justify-between border-t border-slate-300/40 bg-[#e6ecf4] px-4 sm:px-6 py-3 overflow-x-auto scrollbar-none gap-2">
-            <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Bottom App Quick Selector Tabs: Smooth horizontal touch scroll */}
+          <div className="flex items-center justify-between border-t border-slate-300/40 bg-[#e6ecf4] px-3 sm:px-6 py-2.5 sm:py-3 gap-2 overflow-x-auto scrollbar-none touch-pan-x">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               {spotlightApps.map((app, idx) => {
                 const isActive = idx === currentIndex;
                 return (
@@ -229,19 +257,19 @@ export const Hero: React.FC<HeroProps> = ({ apps, onOpenDetails }) => {
                     key={app.id}
                     type="button"
                     onClick={() => setCurrentIndex(idx)}
-                    className={`flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                    className={`flex items-center gap-1.5 sm:gap-2 rounded-full px-3 sm:px-3.5 py-1 sm:py-1.5 text-xs font-bold transition-all whitespace-nowrap cursor-pointer shrink-0 ${
                       isActive
                         ? 'neu-inset text-sky-700'
                         : 'neu-button text-slate-600 hover:text-slate-900'
                     }`}
                   >
-                    <span className="truncate max-w-[100px] sm:max-w-[140px]">{app.name}</span>
+                    <span className="truncate max-w-[90px] sm:max-w-[140px]">{app.name}</span>
                   </button>
                 );
               })}
             </div>
 
-            {/* Slide Dots / Indicators */}
+            {/* Slide Dots on Desktop */}
             <div className="hidden md:flex items-center gap-1.5 shrink-0 pl-2">
               {spotlightApps.map((_, idx) => (
                 <button

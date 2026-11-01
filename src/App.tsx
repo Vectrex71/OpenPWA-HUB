@@ -273,7 +273,7 @@ export default function App() {
                 className="flex items-center gap-1.5 rounded-xl neu-button-primary px-4 py-2 text-xs font-bold transition-colors cursor-pointer"
               >
                 <Plus className="h-3.5 w-3.5 stroke-[2.5]" />
-                <span>+ Submit PWA</span>
+                <span>Submit PWA</span>
               </button>
             </div>
           </div>

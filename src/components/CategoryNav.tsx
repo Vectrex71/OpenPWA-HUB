@@ -46,9 +46,9 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
   onResetFilters,
 }) => {
   return (
-    <div className="space-y-3">
-      {/* Primary Category Neumorphic Bar: generous pt/pb prevents shadow clipping by overflow-x */}
-      <div className="flex items-center gap-2.5 overflow-x-auto pt-3.5 pb-3.5 px-3 -mx-3 scrollbar-none">
+    <div className="space-y-2.5 sm:space-y-3">
+      {/* Primary Category Bar: Horizontal touch scroll with clean padding */}
+      <div className="flex items-center gap-2 overflow-x-auto pt-2.5 pb-2.5 px-1 scrollbar-none touch-pan-x">
         {CATEGORIES.map((cat) => {
           const isActive = selectedCategory === cat.id;
           const count = cat.id === 'all' ? categoryCounts.all || 0 : categoryCounts[cat.id] || 0;
@@ -58,7 +58,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
               key={cat.id}
               type="button"
               onClick={() => onSelectCategory(cat.id)}
-              className={`flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all whitespace-nowrap shrink-0 cursor-pointer ${
+              className={`flex items-center gap-1.5 sm:gap-2 rounded-full px-3 sm:px-3.5 py-1.5 text-xs font-bold transition-all whitespace-nowrap shrink-0 cursor-pointer ${
                 isActive
                   ? 'neu-inset text-sky-700'
                   : 'neu-button text-slate-700 hover:text-slate-900'
@@ -66,7 +66,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
             >
               <span>{cat.label}</span>
               <span
-                className={`text-[10px] tabular-nums rounded-full px-2 py-0.5 font-bold ${
+                className={`text-[10px] tabular-nums rounded-full px-1.5 py-0.2 font-bold ${
                   isActive
                     ? 'neu-flat-sm text-sky-800'
                     : 'neu-inset text-slate-500'
@@ -80,15 +80,15 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
       </div>
 
       {/* Secondary Quick Filter Controls & Sort Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
-        {/* Quick Toggles */}
-        <div className="flex flex-wrap items-center gap-2.5">
-          <span className="text-xs font-semibold text-slate-500 mr-1">Filter:</span>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-0.5">
+        {/* Quick Toggles: Single horizontal swipeable row on mobile */}
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-none py-1 touch-pan-x">
+          <span className="text-[11px] font-bold text-slate-400 shrink-0">Filter:</span>
 
           <button
             type="button"
             onClick={onToggleOffline}
-            className={`flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
               offlineOnly
                 ? 'neu-inset text-emerald-700'
                 : 'neu-button text-slate-600 hover:text-slate-900'
@@ -101,7 +101,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
           <button
             type="button"
             onClick={onToggleOpenSource}
-            className={`flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
               openSourceOnly
                 ? 'neu-inset text-sky-700'
                 : 'neu-button text-slate-600 hover:text-slate-900'
@@ -114,7 +114,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
           <button
             type="button"
             onClick={onToggleFeatured}
-            className={`flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
               featuredOnly
                 ? 'neu-inset text-amber-700'
                 : 'neu-button text-slate-600 hover:text-slate-900'
@@ -124,12 +124,12 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
             <span>Featured</span>
           </button>
 
-          {/* Seamless reset filter button directly inside filter controls */}
+          {/* Seamless reset filter button */}
           {hasActiveFilters && onResetFilters && (
             <button
               type="button"
               onClick={onResetFilters}
-              className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-all cursor-pointer neu-button text-sky-700 hover:text-sky-900 ml-1"
+              className="flex items-center gap-1 rounded-full px-2.5 py-1.5 text-xs font-bold transition-all cursor-pointer neu-button text-sky-700 hover:text-sky-900 shrink-0"
               title="Reset all filters"
             >
               <FilterX className="h-3.5 w-3.5" />
@@ -138,14 +138,16 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
           )}
         </div>
 
-        {/* Sort Selector with matching rounded pill curve */}
-        <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
-          <ArrowUpDown className="h-3.5 w-3.5 text-slate-500" />
-          <span className="text-slate-500">Sort:</span>
+        {/* Sort Selector */}
+        <div className="flex items-center justify-between sm:justify-end gap-2 text-xs font-semibold text-slate-600 shrink-0 pt-1 sm:pt-0">
+          <div className="flex items-center gap-1.5">
+            <ArrowUpDown className="h-3.5 w-3.5 text-slate-500" />
+            <span className="text-slate-500 text-[11px] sm:text-xs">Sort:</span>
+          </div>
           <select
             value={sortBy}
             onChange={(e) => onChangeSort(e.target.value as SortOption)}
-            className="rounded-full neu-button px-3.5 py-1.5 text-xs font-bold text-slate-700 focus:outline-none cursor-pointer"
+            className="rounded-full neu-button px-3 py-1 sm:py-1.5 text-xs font-bold text-slate-700 focus:outline-none cursor-pointer"
           >
             <option value="featured">Featured First</option>
             <option value="name">Alphabetical (A-Z)</option>
