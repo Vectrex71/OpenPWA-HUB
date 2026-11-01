@@ -12,11 +12,14 @@ permissions:
 jobs:
   create-pr:
     name: Convert Issue to Pull Request
-    # Run only for PWA submission issues
+    # Only run when triggered by an actual issue event
     if: |
-      contains(github.event.issue.labels.*.name, 'pwa-submission') ||
-      startsWith(github.event.issue.title, '[Neue PWA]') ||
-      startsWith(github.event.issue.title, '[New PWA]')
+      github.event_name == 'issues' &&
+      (
+        contains(github.event.issue.labels.*.name, 'pwa-submission') ||
+        startsWith(github.event.issue.title, '[Neue PWA]') ||
+        startsWith(github.event.issue.title, '[New PWA]')
+      )
     runs-on: ubuntu-latest
 
     steps:
