@@ -1,0 +1,22 @@
+{
+  "id": "drivedeck",
+  "name": "DriveDeck",
+  "url": "https://drivedeck.syn-labs.app/",
+  "description": "DriveDeck is a modern, privacy-respecting, block-based workspace designed for individuals and teams who want the flexibility of tools like Notion without surrendering their data sovereignty. Using a Bring Your Own Cloud (BYOC) architecture, it stores all your notes, Kanban boards, project albums, and tasks directly in your Google Drive and local IndexedDB.",
+  "category": "Productivity",
+  "tags": [
+    "Offline",
+    "Open Source",
+    "Security",
+    "Notes",
+    "Cloud"
+  ],
+  "iconUrl": "assets/drivedeck-icon.png",
+  "screenshots": [
+    "assets/drivedeck-hero.png"
+  ],
+  "featured": true,
+  "author": "Hansjuerg Wuethrich",
+  "license": "MIT",
+  "githubUrl": "https://github.com/Vectrex71/DriveDeck"
+}
