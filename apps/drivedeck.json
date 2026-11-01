@@ -1,0 +1,20 @@
+{
+  "id": "drivedeck",
+  "name": "DriveDeck",
+  "url": "https://drivedeck.syn-labs.app/",
+  "description": "DriveDeck is a modern, privacy-respecting, block-based workspace designed for individuals and teams who want the flexibility of tools like Notion without surrendering their data sovereignty.\n\nBy using a \"Bring Your Own Cloud\" (BYOC) architecture, DriveDeck stores all your notes, Kanban boards, project albums, and tasks directly in your personal Google Drive hidden application sandbox (appDataFolder) and local browser IndexedDB.\n\nNo external database. No subscription fees. No tracking. Complete data ownership.",
+  "category": "Productivity",
+  "tags": [
+    "Open Source",
+    "Security",
+    "Notes"
+  ],
+  "iconUrl": "https://github.com/Vectrex71/DriveDeck/blob/main/public/favicon.png",
+  "screenshots": [
+    "https://private-user-images.githubusercontent.com/38962385/654743100-a7072d4e-299e-4145-9bdc-ac24178f9ce9.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM1NjA1OTgsIm5iZiI6MTc5MzU2MDI5OCwicGF0aCI6Ii8zODk2MjM4NS82NTQ3NDMxMDAtYTcwNzJkNGUtMjk5ZS00MTQ1LTliZGMtYWMyNDE3OGY5Y2U5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjExMDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYxMTAxVDE5MTEzOFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTJkZTQzZjcyOGZiNzM5ZGY0ODU1OWQyOTM5YzQxMGEyMTYyMDAxOGIxNzMyOTVjMTlkNjFlOGIzNjJjOWIxODkmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.pQE4ESBTX0OyRZ4KlRUsUftI9a_nbx4s_dQH6YFww2Q"
+  ],
+  "featured": false,
+  "author": "Hansjuerg Wuethrich",
+  "license": "MIT",
+  "githubUrl": "https://github.com/Vectrex71/DriveDeck"
+}
