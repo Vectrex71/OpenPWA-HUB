@@ -30,23 +30,23 @@ export function setGitHubRepo(repo: string): void {
  */
 export function createGitHubIssueUrl(repo: string, appName: string, jsonString: string): string {
   const cleanRepo = repo.replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '');
-  const title = encodeURIComponent(`[Neue PWA]: ${appName}`);
+  const title = encodeURIComponent(`[New PWA]: ${appName}`);
   
-  const issueBody = `### 🚀 Neue PWA Einreichung: ${appName}
+  const issueBody = `### 🚀 New PWA Submission: ${appName}
 
-Vielen Dank für deinen Vorschlag! Bitte prüfe die untenstehende JSON-Konfiguration.
+Thank you for your submission! Please review the JSON configuration below.
 
 \`\`\`json
 ${jsonString}
 \`\`\`
 
-#### Checkliste für Maintainer:
-- [ ] PWA ist per HTTPS erreichbar und lädt schnell
-- [ ] Enthält ein gültiges Web App Manifest (\`manifest.json\`)
-- [ ] Icon und Screenshots sind hochauflösend und zugänglich
-- [ ] Keine bösartigen Skripte oder aufdringliche Popups
+#### Maintainer Review Checklist:
+- [ ] PWA is accessible via HTTPS and loads quickly
+- [ ] Includes a valid Web App Manifest (\`manifest.json\`)
+- [ ] App icon and screenshots are high-resolution and accessible
+- [ ] Safe, authentic, and free of intrusive ads or trackers
 
-*Automatisch generiert über das OpenPWA Hub Formular.*`;
+*Automatically generated via OpenPWA Hub submission form.*`;
 
   const encodedBody = encodeURIComponent(issueBody);
   return `https://github.com/${cleanRepo}/issues/new?title=${title}&body=${encodedBody}&labels=pwa-submission,app-review`;

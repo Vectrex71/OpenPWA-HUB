@@ -102,12 +102,12 @@ try {
 
     // Comment on issue
     const commentBody = [
-      '🎉 **Automatischer Pull Request erstellt!**',
+      '🎉 **Automated Pull Request Created!**',
       '',
-      `Ein Pull Request wurde automatisch für **${appName}** generiert:`,
+      `A Pull Request has been automatically created for **${appName}**:`,
       `👉 ${prUrl}`,
       '',
-      "Klicke einfach im Pull Request auf den grünen Button **'Merge pull request'**, um die PWA in den Hub aufzunehmen!",
+      "Maintainer: Simply click the green **'Merge pull request'** button to publish this PWA to OpenPWA Hub!",
     ].join('\n');
 
     fs.writeFileSync('issue_comment.txt', commentBody, 'utf8');
@@ -124,7 +124,7 @@ try {
       console.log(`✅ Fallback: App ${appName} committed directly to main!`);
 
       // Comment on issue
-      runCommand(`gh issue comment "${issueNumber}" --body "✅ **PWA erfolgreich hinzugefügt!** Die Konfiguration für **${appName}** wurde direkt in \`main\` übernommen und wird nun live bereitgestellt."`);
+      runCommand(`gh issue comment "${issueNumber}" --body "✅ **PWA successfully added!** The configuration for **${appName}** has been merged into \`main\` and will be deployed live shortly."`);
       runCommand(`gh issue close "${issueNumber}"`);
     } catch (fallbackErr) {
       console.error('❌ Direct push to main also failed. Please check repository Actions permissions (Settings > Actions > General > Workflow permissions: Read and write permissions).');
