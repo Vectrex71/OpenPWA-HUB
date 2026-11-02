@@ -37,16 +37,16 @@ export const AppCard: React.FC<AppCardProps> = ({ app, onOpenDetails, onTagClick
   return (
     <article
       onClick={() => onOpenDetails(app)}
-      className="group relative flex flex-col justify-between rounded-2xl neu-flat p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-[9px_9px_22px_#b8c4d6,-9px_-9px_22px_#ffffff] cursor-pointer overflow-hidden"
+      className="group relative flex flex-col justify-between rounded-2xl neu-flat p-4 transition-all duration-300 ease-out hover:-translate-y-2 hover:-rotate-1 hover:scale-[1.015] hover:shadow-[14px_16px_28px_#b4c0d4,-10px_-10px_24px_#ffffff] cursor-pointer overflow-hidden transform-gpu will-change-transform"
     >
       <div>
-        {/* Top Preview Frame: 16:9 Aspect Ratio with Inset Border */}
+        {/* Top Preview Frame: 16:9 Aspect Ratio with Inset Border - No disruptive image zoom */}
         <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl neu-inset bg-slate-200/50 mb-3.5">
           {screenshot && !screenshotError ? (
             <img
               src={screenshot}
               alt={`${app.name} preview`}
-              className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+              className="h-full w-full object-cover object-top"
               loading="lazy"
               referrerPolicy="no-referrer"
               onError={() => setScreenshotError(true)}
@@ -76,7 +76,7 @@ export const AppCard: React.FC<AppCardProps> = ({ app, onOpenDetails, onTagClick
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
             {/* App Icon */}
-            <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl neu-flat-sm p-1.5 transition-transform group-hover:scale-105 bg-[#e6ecf4]">
+            <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl neu-flat-sm p-1.5 bg-[#e6ecf4]">
               {!iconError ? (
                 <img
                   src={iconSrc}

@@ -14,6 +14,7 @@ import { SubmissionModal } from './components/SubmissionModal';
 import { SettingsModal } from './components/SettingsModal';
 import { DocsModal } from './components/DocsModal';
 import { Footer } from './components/Footer';
+import { DynamicBackground } from './components/DynamicBackground';
 import fallbackData from './data/fallbackDatabase.json';
 import { FilterX, AlertCircle, Plus } from 'lucide-react';
 
@@ -169,7 +170,10 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#e6ecf4] text-slate-800 font-sans selection:bg-sky-500/20 selection:text-sky-900">
+    <div className="relative flex min-h-screen flex-col text-slate-800 font-sans selection:bg-sky-500/20 selection:text-sky-900">
+      {/* Dynamic Animated Tech Background */}
+      <DynamicBackground />
+
       {/* Top Header with Compact Search Bar */}
       <Header
         onOpenSubmit={() => setIsSubmitOpen(true)}
