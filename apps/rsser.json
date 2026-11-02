@@ -1,21 +1,22 @@
 {
   "id": "rsser",
-  "name": "RSSer",
+  "name": "RSSer News",
   "url": "https://rsser.syn-labs.app",
-  "description": "RSSer News\nYOUR Feed, YOUR Rules.\nThe ultimate home for RSS, Podcasts, YouTube and Radio. (Without the noise of the World Wide Web)",
+  "description": "YOUR Feed, YOUR Rules. The ultimate private home for RSS feeds, podcasts, YouTube channels, and radio streams without algorithmic noise.",
   "category": "Utilities",
   "tags": [
+    "Offline",
+    "Open Source",
     "News",
-    "RSS"
+    "RSS",
+    "Audio",
+    "Podcasts"
   ],
-  "iconUrl": "https://github.com/Vectrex71/RSSer/blob/main/public/RSSerLogo.png",
+  "iconUrl": "assets/rsser-icon.png",
   "screenshots": [
-    "https://private-user-images.githubusercontent.com/38962385/642685779-a383eb8a-7c79-45ed-81c1-791f7b2a98cc.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM2MzUwMDMsIm5iZiI6MTc5MzYzNDcwMywicGF0aCI6Ii8zODk2MjM4NS82NDI2ODU3NzktYTM4M2ViOGEtN2M3OS00NWVkLTgxYzEtNzkxZjdiMmE5OGNjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjExMDIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYxMTAyVDE1NTE0M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWE2NjkyMTVhNzQzNGY3MmRlZjU3OGYwMWRjNzllZWNiMjQzNTM5NTI3ZmRjNGYzNWJkOGJkZWYwMWYzN2MwNjYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.8k0tiIkeL5WAOaDoAoq3F_fEzkYAnbUKls5G851uI0o",
-    "https://private-user-images.githubusercontent.com/38962385/642685903-dc3c96e3-708b-47fb-a56c-615e51f9a3df.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM2MzUwMDMsIm5iZiI6MTc5MzYzNDcwMywicGF0aCI6Ii8zODk2MjM4NS82NDI2ODU5MDMtZGMzYzk2ZTMtNzA4Yi00N2ZiLWE1NmMtNjE1ZTUxZjlhM2RmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjExMDIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYxMTAyVDE1NTE0M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWJiZjNjNDA5NWJhNjJjZmVmNmZhMDY0ZDc0OGJhNmVlYmU4YmJmNjFiMDA2YmFmNDQ0ZDc2ZDllMjY0NTg4M2QmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.8mG81cX8FLaxqRGL7antP_0Vbc8i_rVtUk5raV5OQyk",
-    "https://private-user-images.githubusercontent.com/38962385/642686243-7031a69b-da45-47e7-a752-5a95016a4651.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM2MzUwMDMsIm5iZiI6MTc5MzYzNDcwMywicGF0aCI6Ii8zODk2MjM4NS82NDI2ODYyNDMtNzAzMWE2OWItZGE0NS00N2U3LWE3NTItNWE5NTAxNmE0NjUxLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjExMDIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYxMTAyVDE1NTE0M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQ4NTRmNDNlZjE1YTAzNzdkMTUxYzMyOGU3NDRkM2ZiOWVhMjgzNDE2OTIxMGVhZGYxNGIyNzg2MjcyMzgxMmQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.PE4IwBEm7ERjxeqsbS4HP_DlPbLFzuJRuxgDqp9OXeo",
-    "https://private-user-images.githubusercontent.com/38962385/642686403-6b61c27a-646f-4726-9487-7a1c201e078b.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM2MzUwMDMsIm5iZiI6MTc5MzYzNDcwMywicGF0aCI6Ii8zODk2MjM4NS82NDI2ODY0MDMtNmI2MWMyN2EtNjQ2Zi00NzI2LTk0ODctN2ExYzIwMWUwNzhiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjExMDIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYxMTAyVDE1NTE0M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQ0NTIyN2QwZmE1NDk3MjczOWJmOWNjZDA4MWQ3MGZiZjNkNTUyNzFlNTNmNDNlOTViNDc3NTY5ZWYxZGJkZDEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.mJbKZtXcCmKd7PS6jlI2kJ2gDNxL8DUo6yQ2Tf5RNig"
+    "assets/rsser-hero.png"
   ],
-  "featured": false,
+  "featured": true,
   "author": "Hansjuerg Wuethrich",
   "license": "MIT",
   "githubUrl": "https://github.com/Vectrex71/RSSer"

@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generatedAt": "2026-11-01T19:20:27.904Z",
-    "totalApps": 11,
-    "featuredCount": 8,
+    "generatedAt": "2026-11-02T16:07:22.873Z",
+    "totalApps": 12,
+    "featuredCount": 9,
     "categories": [
       "Audio & Video",
       "Developer Tools",
@@ -38,7 +38,7 @@
       "githubUrl": "https://github.com/gabrielecirulli/2048",
       "author": "Gabriele Cirulli",
       "license": "MIT",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     },
     {
       "id": "audiomass",
@@ -64,7 +64,7 @@
       "githubUrl": "https://github.com/pkalogiros/AudioMass",
       "author": "Pantelis Kalogiros",
       "license": "GPL-3.0",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     },
     {
       "id": "drivedeck",
@@ -87,7 +87,7 @@
       "githubUrl": "https://github.com/Vectrex71/DriveDeck",
       "author": "Hansjuerg Wuethrich",
       "license": "MIT",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     },
     {
       "id": "excalidraw",
@@ -114,7 +114,7 @@
       "githubUrl": "https://github.com/excalidraw/excalidraw",
       "author": "Excalidraw Team",
       "license": "MIT",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     },
     {
       "id": "photopea",
@@ -142,7 +142,31 @@
       "githubUrl": "https://github.com/photopea/photopea",
       "author": "Ivan Kutskir",
       "license": "Freemium / Web",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
+    },
+    {
+      "id": "rsser",
+      "name": "RSSer News",
+      "url": "https://rsser.syn-labs.app",
+      "description": "YOUR Feed, YOUR Rules. The ultimate private home for RSS feeds, podcasts, YouTube channels, and radio streams without algorithmic noise.",
+      "category": "Utilities",
+      "tags": [
+        "Offline",
+        "Open Source",
+        "News",
+        "RSS",
+        "Audio",
+        "Podcasts"
+      ],
+      "iconUrl": "assets/rsser-icon.png",
+      "screenshots": [
+        "assets/rsser-hero.png"
+      ],
+      "featured": true,
+      "githubUrl": "https://github.com/Vectrex71/RSSer",
+      "author": "Hansjuerg Wuethrich",
+      "license": "MIT",
+      "addedAt": "2026-11-02"
     },
     {
       "id": "squoosh",
@@ -169,7 +193,7 @@
       "githubUrl": "https://github.com/GoogleChromeLabs/squoosh",
       "author": "Google Chrome Labs",
       "license": "Apache-2.0",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     },
     {
       "id": "syntracker",
@@ -195,7 +219,7 @@
       "githubUrl": "https://github.com/Vectrex71/Syn-Tracker",
       "author": "HJ.Wuethrich",
       "license": "MIT",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     },
     {
       "id": "vscode-web",
@@ -222,7 +246,7 @@
       "githubUrl": "https://github.com/microsoft/vscode",
       "author": "Microsoft",
       "license": "MIT",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     },
     {
       "id": "cyberchef",
@@ -248,7 +272,7 @@
       "githubUrl": "https://github.com/gchq/CyberChef",
       "author": "GCHQ",
       "license": "Apache-2.0",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     },
     {
       "id": "poddr",
@@ -273,7 +297,7 @@
       "githubUrl": "https://github.com/Sn8z/Poddr",
       "author": "Marcus Sneitz (Sn8z)",
       "license": "GPL-3.0",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     },
     {
       "id": "sand-spiel",
@@ -299,7 +323,7 @@
       "githubUrl": "https://github.com/MaxBittker/sandspiel",
       "author": "Max Bittker",
       "license": "MIT",
-      "addedAt": "2026-11-01"
+      "addedAt": "2026-11-02"
     }
   ]
 }
