@@ -1,0 +1,21 @@
+{
+  "id": "roms-collection-manager",
+  "name": "ROMs Collection Manager",
+  "url": "https://rom-collection-manager.syn-labs.app/",
+  "description": "Your Retro Collection. Perfectly curated & ready to play.\nNo more file chaos, duplicates, and cryptic filenames like smw_v1_0_[b1].smc. ROM Collection Manager analyzes your library using No-Intro and 1G1R standards, organizes multi-disc sets into subfolders, and generates plug-and-play M3U playlists.",
+  "category": "Games & Fun",
+  "tags": [
+    "Offline",
+    "Organization",
+    "Games",
+    "Emulators"
+  ],
+  "iconUrl": "https://rom-collection-manager.syn-labs.app/favicon.png",
+  "screenshots": [
+    "https://private-user-images.githubusercontent.com/38962385/692490333-3275928e-0454-486c-bfd0-82a0b10af29a.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM2MzkxOTYsIm5iZiI6MTc5MzYzODg5NiwicGF0aCI6Ii8zODk2MjM4NS82OTI0OTAzMzMtMzI3NTkyOGUtMDQ1NC00ODZjLWJmZDAtODJhMGIxMGFmMjlhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjExMDIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYxMTAyVDE3MDEzNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTIyYzBiNzQyMDBiZjM5OTc5ODJlZGI0NGQ3YzQ4ZjNkMjg0M2NjNWE0MWQ2NDI3MzJkZWViOWFhZWM3MzcwMTUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.8Vzuy2PUNFrHuRutQhp_fp6h0Ui1Ey54mIPSpjXOge4"
+  ],
+  "featured": false,
+  "author": "Hansjuerg Wuethrich",
+  "license": "MIT",
+  "githubUrl": "https://github.com/Vectrex71/Rom-Collection-Manager"
+}
