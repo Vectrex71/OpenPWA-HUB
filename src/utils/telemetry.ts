@@ -1,5 +1,4 @@
-const DEFAULT_MONITOR_URL =
-  'https://ais-pre-f2nkxh4jwzzwsvw3iinwko-159566478505.europe-west3.run.app';
+const DEFAULT_MONITOR_URL = 'https://syn-labs-monitor.ai.studio/api/hit';
 const SERVICE_ID = 'openpwa-hub';
 const SESSION_KEY = `synlabs_wake_sent:${SERVICE_ID}`;
 
