@@ -15,6 +15,7 @@ import { SettingsModal } from './components/SettingsModal';
 import { DocsModal } from './components/DocsModal';
 import { Footer } from './components/Footer';
 import { DynamicBackground } from './components/DynamicBackground';
+import { sendWakeBeacon } from './utils/telemetry';
 import fallbackData from './data/fallbackDatabase.json';
 import { FilterX, AlertCircle, Plus } from 'lucide-react';
 
@@ -73,6 +74,7 @@ export default function App() {
   };
 
   useEffect(() => {
+    sendWakeBeacon();
     loadDatabase();
   }, []);
 
